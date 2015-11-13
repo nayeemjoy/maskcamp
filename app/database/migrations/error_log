@@ -1,0 +1,1 @@
+[07-May-2015 10:36:08 UTC] PHP Fatal error:  Class 'Illuminate\Database\Migrations\Migration' not found in /home/maskcamp/public_html/app/database/migrations/2015_05_05_234340_create_users_table.php on line 6

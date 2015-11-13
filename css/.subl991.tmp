@@ -1,0 +1,198 @@
+body{
+     
+    background: url(../img/cube.png) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    -webkit-animation: anime 5s infinite; /* Chrome, Safari, Opera */
+    animation: anime 5s infinite;     
+} 
+
+@-webkit-keyframes anime {
+
+    0%   {background: url(../img/cube.png) no-repeat center center fixed;-webkit-background-size: cover; -moz-background-size: cover;-o-background-size: cover;background-size: cover}
+    25%  {background: url(../img/cube2.png) no-repeat center center fixed;-webkit-background-size: cover;-moz-background-size: cover;-o-background-size: cover;background-size: cover }
+    50%  {background: url(../img/cube3.png) no-repeat center center fixed;-webkit-background-size: cover ;-moz-background-size: cover;-o-background-size: cover;background-size: cover}
+    75% {background: url(../img/cube4.png) no-repeat center center fixed;-webkit-background-size: cover ;-moz-background-size: cover;-o-background-size: cover;background-size: cover}    
+}
+
+@keyframes anime {
+
+    0%   {background: url(../img/cube.png) no-repeat center center fixed; -moz-background-size: cover;background-size: cover}
+    25%  {background: url(../img/cube2.png) no-repeat center center fixed;-moz-background-size: cover;background-size: cover }
+    50%  {background: url(../img/cube3.png) no-repeat center center fixed;-moz-background-size: cover;background-size: cover}
+    75% {background: url(../img/cube4.png) no-repeat center center fixed;-moz-background-size: cover;background-size: cover}  
+}
+
+@font-face{
+
+    font-family: CustomFont;
+    src: url(../fonts/Amaranth-Regular.otf);
+}
+
+.navbar-inverse{
+
+    padding:1em;
+    opacity:.4;    
+}
+
+.navbar-nav > li {
+
+  margin-left: 50px;
+  margin-top: 10px;
+}
+
+.navbar-nav > li:hover {
+
+   background: #4E5152;
+   border-radius: 10px;
+   color:#fff;
+   -webkit-animation: anime_02 1s ; /* Chrome, Safari, Opera */
+    animation: anime_02 1s ;   
+}
+
+@-webkit-keyframes anime_02 {
+
+    0% {padding:1em;}
+    50%{padding:2em;}
+}
+
+@keyframes anime_02 {
+
+    0% {padding:1em;}
+    50%{padding:2em;}
+}
+
+.navbar-inverse .navbar-nav > li > a {
+
+    color: #FCFAFA;
+    font-size: 1.2em; 
+    font-family: CustomFont;
+    margin-top: 15px;
+}
+
+.jumbotron_02{
+
+  text-align: center;
+  opacity:.5;
+  background-color: #101010;
+  color:#fff;
+  margin-top: 300px;
+}
+
+.jumbotron_02 h1,p{
+
+  font-family: CustomFont;
+}
+
+.jumbotron_02:hover{
+
+   opacity:.8;
+}
+
+.product{
+
+  text-align: center;
+  opacity:.5;
+  background-color: #101010;
+  color:#fff;
+  padding:1em;
+
+}
+
+.product h3,p {
+
+  font-family: CustomFont;
+  margin-top: 30px;
+}
+
+.product:hover{
+
+  opacity: .8;
+}
+
+.image {
+    
+    -webkit-transition:  -ms-transform 1s,-webkit-transform 1s,transform 1s,background 2s,height 1s,width 1s,font-weight 1s ;/* For Safari 3.1 to 6.0 */
+    transition:  -ms-transform 1s,-webkit-transform 1s,transform 1s,background 2s,height 1s,width 1s,font-weight 1s;
+    -webkit-transition-timing-function: ease-out; /* Safari and Chrome */
+    transition-timing-function: ease-out; 
+}
+
+.image:hover {
+    
+    -ms-transform: rotate(360deg); /* IE 9 */
+    -webkit-transform: rotate(360deg); /* Chrome, Safari, Opera */
+    transform: rotate(360deg); 
+}
+
+.container-02{
+
+  margin-top:30px;
+}
+
+@-webkit-keyframes bounceIn {
+  0% {
+    -webkit-transform: scale(0.1);
+    opacity: 0;
+  }
+  60% {
+    -webkit-transform: scale(1.2);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: scale(1);
+  }
+}
+
+
+@keyframes bounceIn {
+  0% {
+    transform: scale(0.1);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.objective{
+
+  text-align: center;
+  opacity:.5;
+  background-color: #101010;
+  color:#fff;
+  padding:1em;
+  border-radius: 175px;
+  height:310px;
+}
+
+.objective h2 {
+
+  font-family: CustomFont;
+  margin-top: 30px;
+  -webkit-animation: bounceIn 2s infinite;
+  animation: bounceIn 2s infinite;
+}
+
+.objective a{
+
+  color:#fff;
+  text-decoration: none;
+}
+
+.objective:hover{
+
+  opacity: .8;
+}
+
+
+
+  
+
+

@@ -1,0 +1,278 @@
+<div class="section-03 col-xs-12 hidden-xs">
+            <!-- E -->
+  <!-- *****START**********5-7-Ehsan -->
+  @if($data['answered'])
+  <div class="top-flop-fixed" data-answered="1">
+  @else
+  <div class="top-flop-fixed" data-answered="0">
+  @endif
+  <!-- ********END*********5-7-Ehsan -->
+    <div class="row visible-xs">
+      <div class="col-xs-12">
+        <span class="visible-xs sidebar-x-button glyphicon glyphicon-remove-sign pull-left" id="cm-right-sidebar-x"aria-hidden="true"></span>
+      </div>
+    </div>
+    
+    <!-- !E -->
+    <div class="row common-room" title="All People Are Anonymous In Common Room."><!--05-10-15-->
+      <div class="col-lg-12 col-md-12 col-sm-12">
+        <div class="page-title">
+          
+          @if($data['page'] == "common")
+          <span class="page-icon glyphicon glyphicon-globe" aria-hidden="true"></span> <!-- 5-7-Ehsan -->
+          Common Room<!--05-10-15-->
+          @elseif($data['page'] == "campus")
+          <span class="page-icon glyphicon glyphicon-education" aria-hidden="true"></span> <!-- 5-7-Ehsan -->
+          Campus
+          @endif
+        </div>
+      </div>  
+    </div>
+
+    @if($data['top_post'])
+     <div class="row poll-section"><!--05-10-15-->
+          <div class="col-lg-12">
+              <div class="poll"><span class="page-icon glyphicon glyphicon-star" aria-hidden="true"></span>The Top Of Yesterday</div><!--05-25-15-turash-->
+          </div>       
+    </div>
+
+    <div class="rsb-day"><!--05-25-15-turash-->
+    
+	    <div class="row"> 
+	      <div class="col-lg-12">
+	        <img src="{{$data['top_post']['img']}}" 
+	             class="img-responsive top-img img-rounded cm-img-pop" 
+	             data-user="{{$data['top_post']['user_id']}}" data-img_canvas_id="result-chart-top" 
+	             data-toggle="tooltip" data-placement="right" data-html="true" 
+	             title="<canvas id='result-chart-top' width='100' height='100'></canvas>"><!-- 19-May-Ehsan -->
+	        <p class="post-info rsb-time"><a class="post-info-link" href="{{URL::to('/singlepost/'.$data['top_post']['id'])}}" target="_blank" ><small>{{$data['top_post']['ago']}}</small></a></p><!--9-2-link-->
+	        <!-- START17-6-Ehsan -->
+              <p class="top">
+                <?php 
+                      if (mb_strlen($data['top_post']['post']) > 100) {
+
+                        if (!preg_match("/\s/", mb_substr($data['top_post']['post'], 99, 1))) {
+                          /*echo "case-false-preset:";*/
+                          $string_break_off = mb_strpos(mb_substr($data['top_post']['post'], 99), " ");
+                          $string_break_off_nl = mb_strpos(mb_substr($data['top_post']['post'], 99), "\n");
+                          
+                          if (preg_match("/\//", mb_substr($data['top_post']['post'], 99+$string_break_off+1, 1))) {
+                              $string_break_off = $string_break_off_nl;
+                          }
+                          
+                          $string_break_off = ($string_break_off_nl < $string_break_off)?$string_break_off_nl:$string_break_off;
+                        } else {
+                          $string_break_off = -1; //Here -1 is for actual 0
+                          /*echo "Case-actual-0";*/
+                        }
+                        
+                        if ($string_break_off == false) {
+                          /*echo "Case-false";*/
+                          echo $data['top_post']['post'];  
+                        } else {
+
+                        //if ($string_break_pos == -1) $string_break_pos = 0;
+                        $string_break_off = ($string_break_off == -1)?0:$string_break_off; 
+
+                        echo mb_substr($data['top_post']['post'], 0, 100+$string_break_off);
+
+                        }
+                         
+                      } else { ?>
+                        
+                        {{$data['top_post']['post']}}
+                        
+                <?php } ?>
+                    <a href="{{URL::to('singlepost/'.$data['top_post']['id'])}}" target="_blank">...Continue reading</a>
+              </p>
+              <!-- END17-6-Ehsan -->
+	      </div>
+	    </div>
+	
+	    <div class="row like-dislike-comment button-section" data-post_id="{{$data['top_post']['id']}}">
+	          <!-- //////19-May-2015-Ehsan -->
+	          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+	             <span class="pull-right count">{{$data['top_post']['like']}}</span>
+	             <!-- Already Liked Checking Start-->
+	             @if($data['top_post']['liked'])
+	             <!-- Already Liked -->
+	             <span class="glyphicon glyphicon-thumbs-up like-img liked" data-liked="1" data-liketype="t-f-post"></span>
+	             @else
+	             <!-- Not Liked Yet -->
+	             <span class="glyphicon glyphicon-thumbs-up like-img" data-liked="0" data-liketype="t-f-post"></span>
+	             @endif
+	             <!-- Already Liked Checking End-->
+	            
+	          </div>
+	          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+	            <span class="pull-right count">{{$data['top_post']['dislike']}}</span>
+	            <!-- Already Disliked Checking Start-->
+	            @if($data['top_post']['disliked'])
+	                <!-- Already disLiked -->
+	            <span class="glyphicon glyphicon-thumbs-down dislike-img disliked" data-liked="3" data-liketype="t-f-post"></span>
+	            @else
+	                <!-- Not disLiked Yet -->
+	            <span class="glyphicon glyphicon-thumbs-down dislike-img" data-liked="2" data-liketype="t-f-post"></span>
+	            @endif
+	            <!-- Already Disliked Checking End --> 
+	            
+	          </div>
+	          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+	             <span class="pull-right count">{{$data['top_post']['comment']}}</span>
+	             <span class="glyphicon glyphicon-comment comment-img like-dislike-opacity" data-reqsource="commenter"></span>
+	          </div>
+	         <!-- !!!!!!!!19-May-2015-Ehsan -->
+	    </div>
+	    
+    </div>
+
+    @endif
+    @if($data['flop_post'])
+    <div class="row poll-section"><!--05-10-15-->
+      <div class="col-lg-12">
+        <div class="poll"><span class="page-icon glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>The Flop Of Yesterday</div><!05-25-15-turash-->
+      </div>       
+    </div>
+    
+    <div class="rsb-day"><!--05-25-15-turash-->
+	
+	    <div class="row "> 
+	      <div class="col-lg-12">
+	        <img src="{{$data['flop_post']['img']}}" 
+	             class="img-responsive top-img img-rounded cm-img-pop" data-user="{{$data['flop_post']['user_id']}}" 
+	             data-img_canvas_id="result-chart-flop" data-toggle="tooltip" 
+	             data-placement="right" data-html="true" 
+	             title="<canvas id='result-chart-flop' width='100' height='100'></canvas>"><!-- 19-May-Ehsan -->
+	        <p class="post-info rsb-time"><a class="post-info-link" href="{{URL::to('/singlepost/'.$data['flop_post']['id'])}}" target="_blank" ><small>{{$data['flop_post']['ago']}}</small></a></p><!--9-2-link-->
+	        <!-- START17-6-Ehsan -->
+              <p class="top">
+                <?php 
+                      if (mb_strlen($data['flop_post']['post']) > 100) {
+
+                        if (!preg_match("/\s/", mb_substr($data['flop_post']['post'], 99, 1))) {
+                          /*echo "case-false-preset:";*/
+                          $string_break_off = mb_strpos(mb_substr($data['flop_post']['post'], 99), " ");
+                          $string_break_off_nl = mb_strpos(mb_substr($data['flop_post']['post'], 99), "\n");
+                          
+                          if (preg_match("/\//", mb_substr($data['flop_post']['post'], 99+$string_break_off+1, 1))) {
+                              $string_break_off = $string_break_off_nl;
+                          }
+                          
+                          $string_break_off = ($string_break_off_nl < $string_break_off)?$string_break_off_nl:$string_break_off;
+                        } else {
+                          $string_break_off = -1; //Here -1 is for actual 0
+                          /*echo "Case-actual-0";*/
+                        }
+                        
+                        if ($string_break_off == false) {
+                          /*echo "Case-false";*/
+                          echo $data['flop_post']['post'];  
+                        } else {
+
+                        //if ($string_break_pos == -1) $string_break_pos = 0;
+                        $string_break_off = ($string_break_off == -1)?0:$string_break_off; 
+
+                        echo mb_substr($data['flop_post']['post'], 0, 100+$string_break_off);
+
+                        }
+                         
+                      } else { ?>
+                        
+                        {{$data['flop_post']['post']}}
+                        
+                <?php } ?>
+                    <a href="{{URL::to('singlepost/'.$data['flop_post']['id'])}}" target="_blank">...Continue reading</a>
+              </p>
+              <!-- END17-6-Ehsan -->
+	      </div>
+	    </div>
+	
+	    <div class="row like-dislike-comment button-section" data-post_id="{{$data['flop_post']['id']}}">
+	          <!-- //////19-May-2015-Ehsan -->
+	          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+	             <span class="pull-right count">{{$data['flop_post']['like']}}</span>
+	             <!-- Already Liked Checking Start-->
+	             @if($data['flop_post']['liked'])
+	             <!-- Already Liked -->
+	             <span class="glyphicon glyphicon-thumbs-up like-img liked" data-liked="1" data-liketype="t-f-post"></span>
+	             @else
+	             <!-- Not Liked Yet -->
+	             <span class="glyphicon glyphicon-thumbs-up like-img" data-liked="0" data-liketype="t-f-post"></span>
+	             @endif
+	             <!-- Already Liked Checking End-->
+	            
+	          </div>
+	          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+	            <span class="pull-right count">{{$data['flop_post']['dislike']}}</span>
+	            <!-- Already Disliked Checking Start-->
+	            @if($data['flop_post']['disliked'])
+	                <!-- Already disLiked -->
+	            <span class="glyphicon glyphicon-thumbs-down dislike-img disliked" data-liked="3" data-liketype="t-f-post"></span>
+	            @else
+	                <!-- Not disLiked Yet -->
+	            <span class="glyphicon glyphicon-thumbs-down dislike-img" data-liked="2" data-liketype="t-f-post"></span>
+	            @endif
+	            <!-- Already Disliked Checking End --> 
+	            
+	          </div>
+	          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+	             <span class="pull-right count">{{$data['flop_post']['comment']}}</span>
+	             <span class="glyphicon glyphicon-comment comment-img like-dislike-opacity" data-reqsource="commenter"></span>
+	          </div>
+	         <!-- !!!!!!!!19-May-2015-Ehsan -->
+	    </div>
+	    
+    </div>
+    <div class="below-fotd"></div><!--05-25-15-turash-->
+    @endif
+  </div>
+  
+  <!-- **********START***************5-7-Ehsan -->
+  @if($data['answered'])
+
+  @else
+    <div class="poll-fixed">
+      @if($data['question'])
+      <form action="{{URL::to('giveanswer')}}" method="POST" class="poll-form"> <!-- 8-7-Turash -->
+
+          <div class="poll-section poll-submit-section"><!--05-10-15-->
+            <div class="col-lg-12">
+              <div class="poll"><span class="page-icon glyphicon glyphicon-stats" aria-hidden="true"></span>Poll</div> 
+            </div>       
+          </div>
+
+          <div class="row poll-question">
+            <div class="col-lg-1"></div>
+            <div class="col-lg-10">  
+                 <p class="question">Q.  {{$data['question']->question}}</p> 
+                   @foreach($data['options_of_question'] as $option)
+                   <p class="opinion">
+                      <input type="radio" name="optid" id="" value="{{$option->id}}">
+                      {{$option->option_details}}
+                   </p>
+                   @endforeach
+            </div> 
+            <div class="col-lg-1"></div>
+          </div>
+
+          <div class="row view-more-section">
+            
+            <div class="col-xs-12">
+              
+            		<!-- <a class="btn btn-success poll-submit" href="#">Answer Taken</a> --><!--05-10-15-->
+              	
+              		
+              		<button class="btn btn-rsb poll-submit">Submit</button><!--05-10-15-->
+              	
+            </div>
+            
+          </div>
+
+      </form>
+      @endif
+    </div>
+  @endif
+  <!-- ********END******************5-7-Ehsan -->
+
+
+</div> <!-- .section-03-full-scroll -->
