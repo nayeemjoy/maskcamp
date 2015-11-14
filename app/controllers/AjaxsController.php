@@ -332,6 +332,14 @@
 		          		} 
 						$text = nl2br($text);
 						$text = Emojione::shortnameToImage($text);
+
+						$name = null;
+						if($type == 2 && !$post->hide_name){
+							$user = User::find($post->user_id);
+							$name = $user->username;
+						}
+
+
 	          			$data['posts'][$i++] = array(
 						'id' => $post->id,
 						'post' => $text,
@@ -347,6 +355,7 @@
 						'comment' => Comment::wherePostId($post->id)->get()->count(),
 						'feeling' => $feeling,
 						'vidsrc' => $str, //9-2-Ehsan
+						'name' => $name,
 						'ago' => $now->diffForHumans()
 					);
 				}
@@ -989,7 +998,7 @@
 			$user = Auth::user();
 			$user->username = $data['name'];
 
-			$user->username_created_at = $data['name'];
+			$user->username_created_at = Carbon::now();
 			
 			if($user->save()){
 				return Response::json([
