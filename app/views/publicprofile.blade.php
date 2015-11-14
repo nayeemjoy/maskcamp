@@ -22,7 +22,7 @@
         <div class="col-lg-3 col-md-3 col-sm-3 hidden-xs"></div>
         <!-- !E -->
         <!-- left side start -->
-        @include('sections.leftsidebarforprofile')
+        @include('sections.left_sidebar_for_public_profile')
         <!-- left side end -->
 
         <div class="col-lg-6 col-md-6 col-sm-6 section-02 section-02-profile">
@@ -114,7 +114,7 @@
 
         <div class="col-lg-3 col-md-3 col-sm-3 hidden-xs"></div>
         <!-- eight side bar begin -->
-        @include('sections.rightsidebarforprofile')
+        @include('sections.right_sidebar_for_public_profile')
         <!-- right side bar end -->
         
         <!-- Commented this out-19-May-2015-Ehsan -->
@@ -167,9 +167,9 @@
     <!-- javascript -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-    <script src="js/Chart.min.js"></script>
-    <script src="js/script.js"></script>
-    <script src="js/cm-xs-sidebars.js"></script>
+    <script src="{{asset('js/Chart.min.js')}}"></script>
+    <script src="{{asset('js/script.js')}}"></script>
+    <script src="{{asset('js/cm-xs-sidebars.js')}}"></script>
     <script>
     
       var navItem = $('.navbar-nav>li:nth-child(5)>a'); 

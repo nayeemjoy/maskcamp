@@ -71,6 +71,9 @@ Route::group(array('before' => 'auth'), function()
 	
 
 	Route::get('/setcampus/{id}','AjaxsController@setCampus');//setcampus/id
+
+
+	Route::post('/setusername/','AjaxsController@setUsername');///setusername/?name=jhjhg
 //Ajaxs
 });
 

@@ -813,6 +813,178 @@
 			->with('followers',$ratio_of_like_dislike_of_my_followers_posts)->with('followings', $ratio_of_like_dislike_of_my_followings_posts)
 			->with('my_posts', $ratio_of_like_dislike_of_my_posts);
 		}
+
+
+		public function getProfile($id){
+			//return 'We Are Working';
+			$data['date'] = $this->getBaseDateTime();
+			
+			// 
+			//Profile Picture And Confession Related Task of Profile 5/12/15
+				$data['confess'] = '';
+				$data['enable'] = 1;
+				$user = User::find(Auth::user()->id);
+				$data['user'] = $user;
+				
+				// Available Pictures
+					$data['pictures'] = Picture::whereSex($user->sex)->orWhere('sex','none')->get();
+				// 
+
+
+
+				$confession = Confession::whereUserId($user->id)->first();
+				if($confession){
+					$now = Carbon::parse($confession->created_at);
+					$now = $now->diffInHours();
+					//$now = $now->diffInSeconds(); //23-6-Ehsan
+					//return $now;
+					if($now < 24){
+						$data['enable'] = 0;
+						$data['confess'] = $confession->confess;	
+					}
+				}
+			//Prifile Picture And Confession Related Task of Profile 5/12/15
+			//return json_encode($data);
+
+			// Friends Like Dislike Percentage
+			$like = Like::whereIn('post_id',function($query){
+	                $query->select('id')->from('posts')->whereIn('user_id', function($query){
+							$query->select('friend_id')->from('friend_list')->whereUserId(Auth::user()->id);
+							});
+	                  }
+
+				)->get()->count();
+			$dislike = Dislike::whereIn('post_id',function($query){
+	                $query->select('id')->from('posts')->whereIn('user_id', function($query){
+							$query->select('friend_id')->from('friend_list')->whereUserId(Auth::user()->id);
+							});
+	                  }
+
+				)->get()->count();
+			$count = FriendList::whereUserId(Auth::user()->id)->get()->count();
+			if(($like+$dislike) == 0){
+				$ratio_of_like_dislike_of_my_friends_posts = array(
+						'like' => 50, 
+						'dislike' => 50
+					);	
+			}
+			else
+			{
+				$ratio_of_like_dislike_of_my_friends_posts = array(
+						'like' => number_format((float)(($like*100.0)/($like+$dislike)), 2, '.', ''), 
+						'dislike' => number_format((float)(($dislike*100.0)/($like+$dislike)), 2, '.', '')
+					);
+			}
+			$ratio_of_like_dislike_of_my_friends_posts['friends'] = $count;
+			//return json_encode($ratio_of_like_dislike_of_my_friends_posts); 
+			// end
+
+			// Followers Like Dislike Percentage
+			$like = Like::whereIn('post_id',function($query){
+	                $query->select('id')->from('posts')->whereIn('user_id', function($query){
+							$query->select('follower_id')->from('followings')->whereFollowingId(Auth::user()->id);
+							});
+	                  }
+
+				)->get()->count();
+			$dislike = Dislike::whereIn('post_id',function($query){
+	                $query->select('id')->from('posts')->whereIn('user_id', function($query){
+							$query->select('follower_id')->from('followings')->whereFollowingId(Auth::user()->id);
+							});
+	                  }
+
+				)->get()->count();
+			$count = Following::whereFollowingId(Auth::user()->id)->get()->count();
+			if(($like+$dislike) == 0){
+				$ratio_of_like_dislike_of_my_followers_posts = array(
+						'like' => 50, 
+						'dislike' => 50
+					);	
+			}
+			else
+			{
+				$ratio_of_like_dislike_of_my_followers_posts = array(
+						'like' => number_format((float)(($like*100.0)/($like+$dislike)), 2, '.', ''), 
+						'dislike' => number_format((float)(($dislike*100.0)/($like+$dislike)), 2, '.', '')
+					);
+			}
+			$ratio_of_like_dislike_of_my_followers_posts['followers'] = $count;
+			
+			//return json_encode($ratio_of_like_dislike_of_my_followers_posts); 
+			
+			// end
+			// Followings Like Dislike Percentage
+			$like = Like::whereIn('post_id',function($query){
+	                $query->select('id')->from('posts')->whereIn('user_id', function($query){
+							$query->select('following_id')->from('followings')->whereFollowerId(Auth::user()->id);
+							});
+	                  }
+
+				)->get()->count();
+			$dislike = Dislike::whereIn('post_id',function($query){
+	                $query->select('id')->from('posts')->whereIn('user_id', function($query){
+							$query->select('following_id')->from('followings')->whereFollowerId(Auth::user()->id);
+							});
+	                  }
+
+				)->get()->count();
+			$count = Following::whereFollowerId(Auth::user()->id)->get()->count();
+			if(($like+$dislike) == 0){
+				$ratio_of_like_dislike_of_my_followings_posts = array(
+						'like' => 50, 
+						'dislike' => 50
+					);	
+			}
+			else
+			{
+				$ratio_of_like_dislike_of_my_followings_posts = array(
+						'like' => number_format((float)(($like*100.0)/($like+$dislike)), 2, '.', ''), 
+						'dislike' => number_format((float)(($dislike*100.0)/($like+$dislike)), 2, '.', '')
+					);
+			}
+			$ratio_of_like_dislike_of_my_followings_posts['followings'] = $count;
+			
+			//return json_encode($ratio_of_like_dislike_of_my_followings_posts); 
+			
+			// end
+			// My Posts Like Dislike Percentage
+			$like = Like::whereIn('post_id',function($query){
+                		$query->select('id')->from('posts')->whereUserId(Auth::user()->id);
+                  }
+
+			)->get()->count();
+			$dislike = Dislike::whereIn('post_id',function($query){
+                		$query->select('id')->from('posts')->whereUserId(Auth::user()->id);
+                  }
+
+			)->get()->count();
+			$count = Post::whereUserId(Auth::user()->id)->get()->count();
+			if(($like+$dislike) == 0){
+				$ratio_of_like_dislike_of_my_posts = array(
+						'like' => 50, 
+						'dislike' => 50
+					);	
+			}
+			else
+			{
+				$ratio_of_like_dislike_of_my_posts = array(
+						'like' => number_format((float)(($like*100.0)/($like+$dislike)), 2, '.', ''), 
+						'dislike' => number_format((float)(($dislike*100.0)/($like+$dislike)), 2, '.', '')
+					);
+			}
+			$ratio_of_like_dislike_of_my_posts['posts'] = $count;
+			
+			// Get All Available Reports and Feelings
+			$data['feelings'] = Feeling::get();
+			$data['reports'] = Report::get();
+			$data['notifications'] = $this->getNotification();
+			//return json_encode($data['notifications']);
+			// return null;
+			return View::make('publicprofile')->with('data', $data)->with('friends',$ratio_of_like_dislike_of_my_friends_posts)
+			->with('followers',$ratio_of_like_dislike_of_my_followers_posts)->with('followings', $ratio_of_like_dislike_of_my_followings_posts)
+			->with('my_posts', $ratio_of_like_dislike_of_my_posts);
+		}
+
 		public function give_answer(){
 			
 			try {

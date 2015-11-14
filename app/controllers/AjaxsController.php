@@ -971,4 +971,36 @@
 
 
 		// Campus Feature Related Code End...
+		// Set Username
+		public function setUsername(){
+			$user = Auth::user();
+			$rules = array
+			(
+				'name'    => 'required|unique:users,username,'.$user->id
+			);
+			$data = Input::all();
+			$validator = Validator::make($data, $rules);
+			if($validator->fails()){
+				return Response::json([
+						'message' => $validator->messages(),
+						'status'  => false
+					]);
+			}
+			$user = Auth::user();
+			$user->username = $data['name'];
+
+			$user->username_created_at = $data['name'];
+			
+			if($user->save()){
+				return Response::json([
+						'message' => 'Success',
+						'status'  => true
+					]);
+			}
+			return Response::json([
+						'message' => 'Failed',
+						'status'  => false
+					]);
+			
+		}
 	}
