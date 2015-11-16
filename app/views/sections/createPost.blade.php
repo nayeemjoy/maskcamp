@@ -19,14 +19,15 @@
               </ul>
           </div>
 
-          <button type="button" class="btn btn-primary btn-modified dropdown-toggle button-class post-it" data-toggle="dropdown"aria-expanded="false">Post</button> <!-- 5-7-Ehsan --><!--11/07/15-turash-->
-          <div class="checkbox name-check">                         
+          <button type="button" class="btn btn-primary btn-modified dropdown-toggle button-class post-it" data-toggle="dropdown"aria-expanded="false">Post</button> <!-- 5-7-Ehsan --><!--11/07/15-turash-->          
+          
+          <div class="checkbox name-check hiddenpostpart"> <!-- 16-11-Ehsan -->                         
               <label>
                   <input type="checkbox" class="toggle-name-check" value="" aria-label="..." >
                   Hide Name
               </label>
           </div>
-      
+          
       </div>          
        
     </div>

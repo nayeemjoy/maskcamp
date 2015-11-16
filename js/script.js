@@ -540,8 +540,14 @@
           thePosttype = $this.closest('.post-area').attr('data-posttype'),
           ajUrl = "createpost",
           ajRes = null,
+          hideName = null, /*16-11-Ehsan*/
           selfUserID = $this.closest('body').attr('data-user'), /*27-May-Ehsan*/
           baseUrl = $this.closest('body').attr('data-baseurl'); /*27-May-Ehsan*/
+
+      /*START--16-11-Ehsan*/
+      if ($this.siblings('div.checkbox').find('input').is(':checked')) hideName = 1;
+      console.log('createNewPost:: hideName = '+hideName);
+      /*END--16-11-Ehsan*/
 
       if (!theFeel) {
           theFeel = 1;
@@ -556,7 +562,8 @@
               data: {
                 post: theTextarea[0].value,
                 feel: theFeel,
-                type: thePosttype
+                type: thePosttype,
+                hidename: hideName /*16-11-Ehsan*/
               }
           }).promise();
 
@@ -1109,7 +1116,7 @@
             }).appendTo(cmCommentsDiv);
   
             $('<textarea></textarea>', {
-                rows: "3",
+                rows: "2", /*16-11-Ehsan*/
                 cols: "40",
                 placeholder: "Leave A Comment", /*5-7-Ehsan*/
                 maxlength: "1000", /*27-May-Ehsan*/
@@ -1118,7 +1125,7 @@
   
             var postBtn = $('<button></button>', {
                 type: "button",
-                class: "col-sm-2 col-xs-4 btn btn-primary button-class pull-right",
+                class: "col-sm-2 col-xs-4 btn btn-primary btn-modified button-class pull-right", /*16-11-Ehsan*/
                 text: "Post"
             }).appendTo(cmCommentDiv);
   
@@ -1995,7 +2002,18 @@
           var theLg9Div = $('<div></div>', {
               class: "col-lg-8 col-md-8 col-sm-7 col-xs-7 post-text" //5-7-Ehsan
           }).appendTo(thePostDisplay);
+          
+          /*START--16-11-Ehsan*/
+          if (theReturned['posts'][loopCount].name) {
+            
+            var theNameP = $('<p></p>', {
+                class: "usernameP",
+                text: theReturned['posts'][loopCount].name
+            }).appendTo(theLg9Div);
 
+          }
+          /*END--16-11-Ehsan*/
+          
           // Feeling and Time
 
           var postDetailsRow = $('<div></div>', {

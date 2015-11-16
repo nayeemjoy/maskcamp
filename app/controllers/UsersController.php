@@ -807,6 +807,7 @@
 			$data['feelings'] = Feeling::get();
 			$data['reports'] = Report::get();
 			$data['notifications'] = $this->getNotification();
+			$data['page'] = "profile"; //16-11-Ehsan
 			//return json_encode($data['notifications']);
 			// return null;
 			return View::make('profile')->with('data', $data)->with('friends',$ratio_of_like_dislike_of_my_friends_posts)

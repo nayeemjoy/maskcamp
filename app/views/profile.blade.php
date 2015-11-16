@@ -38,7 +38,7 @@
                            Friends Room Posts
                         </a>
                      </li>
-                     <li data-viewmoretype="5" data-scrollfinished="no"><a href="#polls" data-toggle="tab" class="posts-polls-tab">Common Room Posts</a></li><!-- 5-7-Ehsan -->
+                     <li data-viewmoretype="5" data-scrollfinished="no"><a href="#commonroom" data-toggle="tab" class="posts-polls-tab">Common Room Posts</a></li><!-- 16-11-Ehsan -->
                      <li data-viewmoretype="6" data-scrollfinished="no"><a href="#campus" data-toggle="tab" class="posts-polls-tab">Campus Posts</a></li><!-- 5-7-Ehsan -->
                   </ul>
                   <div id="myTabContent" class="tab-content">
@@ -51,7 +51,7 @@
                         
                     </div>
                         
-                    <div class="tab-pane fade" id="polls">
+                    <div class="tab-pane fade" id="commonroom"> <!-- 16-11-Ehsan -->
                         @include('sections.createPost')
                         <div class="btn-view-more-posts">             
                           <div class="view-more-posts" data-viewmoretype="5" data-lastpost="0"><img src="{{asset('img/379.GIF')}}"></div> <!-- 5-7-Ehsan -->
@@ -313,7 +313,9 @@
      
      /*Modifying the post-area so that new posts don't have functionality on tags*/
       $('div.post-area').attr('data-tagflag', '1'); /*Eve-26-May-Ehsan*/
-     
+      
+      $('div.wrapper div#myTabContent div#commonroom div.checkbox').removeClass('hiddenpostpart'); //16-11-Ehsan
+
     </script>
 
 @stop

@@ -1128,6 +1128,10 @@ padding: 5px;
 	margin-top:20px;
 }
 
+#commonroom {
+	margin-top:20px; /*16-11-Ehsan*/	
+}
+
 .confession{  /*05-23-15*/
 
     background: rgb(65, 144, 210);
@@ -2067,8 +2071,6 @@ the modifications in all pages**/
 	border-radius: 1px;
 }
 
-/************START*********************************************7-11-Ehsan*/
-
 .confession-view-count-span {
 	display: block;
     text-align: center;
@@ -2081,4 +2083,8 @@ the modifications in all pages**/
     color: white;
 }
 
-/************END*********************************************7-11-Ehsan*/
+/************START*********************************************16-11-Ehsan*/
+.usernameP {
+	color: rgb(165, 145, 145);
+}
+/************END*********************************************16-11-Ehsan*/

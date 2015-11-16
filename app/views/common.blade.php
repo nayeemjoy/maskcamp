@@ -239,6 +239,8 @@
 
           $('div.section-02 .mc-post-area-style').addClass('mc-post-area-not-profile'); /*5-7-Ehsan*/
 
+          $('div.post-area div.checkbox').removeClass('hiddenpostpart'); //16-11-Ehsan
+        
         });
     </script>   
 
