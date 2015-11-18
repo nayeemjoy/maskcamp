@@ -11,14 +11,14 @@
    </div>
   </div>
   
-  <div class="row">
+  <!-- <div class="row">
     <p class="result-section" style="margin-top: -8px;">Select Your Mask</p>
-  </div>
-  <!-- **********************START**************5-7-Ehsan -->
-  <div class="row"><!-- hidden-sm user img choice lg,md device -->
+  </div> -->
+  
+  <!-- <div class="row">
     <div class="col-lg-12 col-md-12 col-sm-12">
       <div class="img-choice">
-          <!-- *****START*******5-7-Ehsan -->
+          
           @foreach($pictures as $picture)
            
             <label class="radio-inline mask-choices">
@@ -33,10 +33,10 @@
             </label>
            
           @endforeach
-          <!-- *****END*******5-7-Ehsan -->
+          
       </div>
     </div>
-  </div>
+  </div> -->
 
   <!--user img choice sm device -->
   <!-- <div class="row visible-sm">
@@ -61,7 +61,7 @@
       </div>
     </div>
   </div> -->
-  <!-- ************************END***************5-7-Ehsan -->
+  
 
   <div class="row">
     <div class="col-lg-12"><!--05-23-15-turash-->
@@ -86,7 +86,7 @@
     </div>
   </div>
   <!--Added By Joy 5/27/15 -->
-   <div class="row">
+   <!-- <div class="row">
     <div class="col-lg-12 post-count">
     	@if($data['user']->disable == 1)
       		<a class="btn btn-success btn-act" href="{{URL::to('/enable')}}">Account Activate</a>
@@ -96,7 +96,7 @@
     		<a class="btn btn-danger btn-act" href="{{URL::to('/disable')}}">Account Deactivate</a>
     	@endif
     </div>
-  </div>
+  </div> -->
   <!--Added By Joy 5/27/15 -->
   
   <ul class="visible-xs" id="cm-ul-full">                                       

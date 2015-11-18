@@ -92,14 +92,15 @@
                         @endif
                         @endif
                         
-                        
-                        @if($post['confess'])
-                        <button class="btn btn-primary btn-confession" aria-hidden="true" data-toggle="modal" data-target="#confessionModal-{{$post['id']}}" title="Click this button to see the confession.">Confession</button>
+                        @if($post['type'] != "1") <!-- 17-11-Ehsan -->
+                          @if($post['confess'])
+                          <button class="btn btn-primary btn-confession" aria-hidden="true" data-toggle="modal" data-target="#confessionModal-{{$post['id']}}" title="Click this button to see the confession.">Confession</button>
+                          @endif
                         @endif
 
                     </div>
                              
-
+                    @if($post['type'] != "1") <!-- 17-11-Ehsan -->
                     @if($post['confess'])
                     <div class="modal fade" id="confessionModal-{{$post['id']}}" role="dialog"><!--10-04-15-->
                         <div class="modal-dialog">
@@ -117,6 +118,7 @@
                             </div>
                         </div>
                     </div>
+                    @endif
                     @endif
 
                     <div class="col-lg-8 col-md-8 col-sm-8 col-xs-7 post-text"><!--05-10-15-->
@@ -165,7 +167,7 @@
                       <!-- Start///////////19-May-2015-Ehsan -->
                       <div class="row like-dislike-comment">
                           <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                             <span class="pull-right count">{{$post['like']}}</span>
+                             <!-- <span class="pull-right count">{{$post['like']}}</span> -->
                              <!-- Already Liked Checking Start-->
                              @if($post['liked'])
                              <!-- Already Liked -->
@@ -178,7 +180,7 @@
                             
                           </div>
                           <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                            <span class="pull-right count">{{$post['dislike']}}</span>
+                            <!-- <span class="pull-right count">{{$post['dislike']}}</span> -->
                             <!-- Already Disliked Checking Start-->
                             @if($post['disliked'])
                                 <!-- Already disLiked -->
@@ -191,11 +193,20 @@
                             
                           </div>
                           <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                             <span class="pull-right count comment-count">{{$post['comment']}}</span>
+                             <!-- <span class="pull-right count comment-count">{{$post['comment']}}</span> -->
                              <span class="glyphicon glyphicon-comment comment-img cm-commenter" data-reqsource="commenter"></span> <!-- ///////////////////06-May-2015-Ehsan -->
                           </div>
                       </div>
                       <!-- End/////////19-May-2015-Ehsan -->
+
+                      <!-- START-17-11-Ehsan -->
+                      <ul class="list-inline ul-like-dislike-comment-count">
+                          <li><small>Likes: <span class="pull-right count">{{$post['like']}}</span></small></li>
+                          <li><small>Dislikes: <span class="pull-right count">{{$post['dislike']}}</span></small></li>
+                          <li><small>Comments: <span class="pull-right count comment-count">{{$post['comment']}}</span></small></li>
+                      </ul>
+                      <!-- END-17-11-Ehsan -->
+
                       <!-- E -->
                       <div class="row cm-comments" data-state="unavailable">
                           

@@ -325,7 +325,7 @@
 					$text = preg_replace('#((https?|ftp)://(\S*?\.\S*?))([\s)\[\]{},;"\':<]|\.\s|$)#i','<a target="_blank" href="$1">$1</a>', $text);
 	          			if ($post->type == 1  || $post->type == 2) {
 							if($type >= 5){	/*$type == 3 || removed on Eve-26-May-Ehsan*/ //5-7-Ehsan
-				        	  	$text = preg_replace('/#([a-zA-Z0-9\x{0980}-\x{09FF}_])+/u','<a>$0</a>',$text); //5-7-Ehsan
+				        	  	$text = preg_replace('/#([a-zA-Z0-9\x{0980}-\x{09FF}_])+/u','<a class="notags">$0</a>',$text); //17-11-Ehsan
 			          		}	else if($type < 4) { /*23-6-Ehsan*/
 				        	  	$text = preg_replace('/#([a-zA-Z0-9\x{0980}-\x{09FF}_])+/u','<a href="" class="tags">$0</a>',$text);
 			          		}

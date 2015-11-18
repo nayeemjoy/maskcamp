@@ -87,7 +87,7 @@
           <div class="row like-dislike-comment button-section" data-post_id="{{$post['id']}}">
             <!-- //////19-May-2015-Ehsan -->
             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-               <span class="pull-right count">{{$post['like']}}</span>
+               <!-- <span class="pull-right count">{{$post['like']}}</span> --> <!-- 17-11-Ehsan -->
                <!-- Already Liked Checking Start-->
                @if($post['liked'])
                <!-- Already Liked -->
@@ -100,7 +100,7 @@
               
             </div>
             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-              <span class="pull-right count">{{$post['dislike']}}</span>
+              <!-- <span class="pull-right count">{{$post['dislike']}}</span> --> <!-- 17-11-Ehsan -->
               <!-- Already Disliked Checking Start-->
               @if($post['disliked'])
                   <!-- Already disLiked -->
@@ -113,11 +113,18 @@
               
             </div>
             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-               <span class="pull-right count">{{$post['comment']}}</span>
+               <!-- <span class="pull-right count">{{$post['comment']}}</span> --> <!-- 17-11-Ehsan -->
                <span class="glyphicon glyphicon-comment comment-img like-dislike-opacity" data-reqsource="commenter"></span>
             </div>
            <!-- !!!!!!!!19-May-2015-Ehsan -->
           </div>
+          <!-- START-17-11-Ehsan -->
+          <ul class="list-inline ul-like-dislike-comment-count">
+              <li><small>Likes: <span class="pull-right count">{{$post['like']}}</span></small></li>
+              <li><small>Dislikes: <span class="pull-right count">{{$post['dislike']}}</span></small></li>
+              <li><small>Comments: <span class="pull-right count">{{$post['comment']}}</span></small></li>
+          </ul>
+          <!-- END-17-11-Ehsan -->
         </div>
 
         <!--<div class="row view-more-section">/*05-25-15*/      
@@ -190,7 +197,7 @@
           <div class="row like-dislike-comment button-section" data-post_id="{{$post['id']}}">
             <!-- //////19-May-2015-Ehsan -->
             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-               <span class="pull-right count">{{$post['like']}}</span>
+               <!-- <span class="pull-right count">{{$post['like']}}</span> --> <!-- 17-11-Ehsan -->
                <!-- Already Liked Checking Start-->
                @if($post['liked'])
                <!-- Already Liked -->
@@ -203,7 +210,7 @@
               
             </div>
             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-              <span class="pull-right count">{{$post['dislike']}}</span>
+              <!-- <span class="pull-right count">{{$post['dislike']}}</span> --> <!-- 17-11-Ehsan -->
               <!-- Already Disliked Checking Start-->
               @if($post['disliked'])
                   <!-- Already disLiked -->
@@ -216,11 +223,19 @@
               
             </div>
             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-               <span class="pull-right count">{{$post['comment']}}</span>
+               <!-- <span class="pull-right count">{{$post['comment']}}</span> --> <!-- 17-11-Ehsan -->
                <span class="glyphicon glyphicon-comment comment-img like-dislike-opacity" data-reqsource="commenter"></span>
             </div>
             <!-- !!!!!!!!19-May-2015-Ehsan -->
           </div>
+          <!-- START-17-11-Ehsan -->
+          <ul class="list-inline ul-like-dislike-comment-count">
+              <li><small>Likes: <span class="pull-right count">{{$post['like']}}</span></small></li>
+              <li><small>Dislikes: <span class="pull-right count">{{$post['dislike']}}</span></small></li>
+              <li><small>Comments: <span class="pull-right count">{{$post['comment']}}</span></small></li>
+          </ul>
+          <!-- END-17-11-Ehsan -->
+
         </div>
         
         <div class="below-fotd"></div><!--05-23-15-turash-->

@@ -92,7 +92,7 @@
 	    <div class="row like-dislike-comment button-section" data-post_id="{{$data['top_post']['id']}}">
 	          <!-- //////19-May-2015-Ehsan -->
 	          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-	             <span class="pull-right count">{{$data['top_post']['like']}}</span>
+	             <!-- <span class="pull-right count">{{$data['top_post']['like']}}</span> --> <!-- 17-11-Ehsan -->
 	             <!-- Already Liked Checking Start-->
 	             @if($data['top_post']['liked'])
 	             <!-- Already Liked -->
@@ -105,7 +105,7 @@
 	            
 	          </div>
 	          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-	            <span class="pull-right count">{{$data['top_post']['dislike']}}</span>
+	            <!-- <span class="pull-right count">{{$data['top_post']['dislike']}}</span> --> <!-- 17-11-Ehsan -->
 	            <!-- Already Disliked Checking Start-->
 	            @if($data['top_post']['disliked'])
 	                <!-- Already disLiked -->
@@ -118,11 +118,19 @@
 	            
 	          </div>
 	          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-	             <span class="pull-right count">{{$data['top_post']['comment']}}</span>
+	             <!-- <span class="pull-right count">{{$data['top_post']['comment']}}</span> --> <!-- 17-11-Ehsan -->
 	             <span class="glyphicon glyphicon-comment comment-img like-dislike-opacity" data-reqsource="commenter"></span>
 	          </div>
 	         <!-- !!!!!!!!19-May-2015-Ehsan -->
 	    </div>
+
+      <!-- START-17-11-Ehsan -->
+      <ul class="list-inline ul-like-dislike-comment-count">
+          <li><small>Likes: <span class="pull-right count">{{$data['top_post']['like']}}</span></small></li>
+          <li><small>Dislikes: <span class="pull-right count">{{$data['top_post']['dislike']}}</span></small></li>
+          <li><small>Comments: <span class="pull-right count">{{$data['top_post']['comment']}}</span></small></li>
+      </ul>
+      <!-- END-17-11-Ehsan -->
 	    
     </div>
 
@@ -190,7 +198,7 @@
 	    <div class="row like-dislike-comment button-section" data-post_id="{{$data['flop_post']['id']}}">
 	          <!-- //////19-May-2015-Ehsan -->
 	          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-	             <span class="pull-right count">{{$data['flop_post']['like']}}</span>
+	             <!-- <span class="pull-right count">{{$data['flop_post']['like']}}</span> --> <!-- 17-11-Ehsan -->
 	             <!-- Already Liked Checking Start-->
 	             @if($data['flop_post']['liked'])
 	             <!-- Already Liked -->
@@ -203,7 +211,7 @@
 	            
 	          </div>
 	          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-	            <span class="pull-right count">{{$data['flop_post']['dislike']}}</span>
+	            <!-- <span class="pull-right count">{{$data['flop_post']['dislike']}}</span> --> <!-- 17-11-Ehsan -->
 	            <!-- Already Disliked Checking Start-->
 	            @if($data['flop_post']['disliked'])
 	                <!-- Already disLiked -->
@@ -216,12 +224,20 @@
 	            
 	          </div>
 	          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-	             <span class="pull-right count">{{$data['flop_post']['comment']}}</span>
+	             <!-- <span class="pull-right count">{{$data['flop_post']['comment']}}</span> --> <!-- 17-11-Ehsan -->
 	             <span class="glyphicon glyphicon-comment comment-img like-dislike-opacity" data-reqsource="commenter"></span>
 	          </div>
 	         <!-- !!!!!!!!19-May-2015-Ehsan -->
 	    </div>
 	    
+      <!-- START-17-11-Ehsan -->
+      <ul class="list-inline ul-like-dislike-comment-count">
+          <li><small>Likes: <span class="pull-right count">{{$data['flop_post']['like']}}</span></small></li>
+          <li><small>Dislikes: <span class="pull-right count">{{$data['flop_post']['dislike']}}</span></small></li>
+          <li><small>Comments: <span class="pull-right count">{{$data['flop_post']['comment']}}</span></small></li>
+      </ul>
+      <!-- END-17-11-Ehsan -->
+
     </div>
     <div class="below-fotd"></div><!--05-25-15-turash-->
     @endif

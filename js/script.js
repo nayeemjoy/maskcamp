@@ -17,18 +17,21 @@
         theOtherClass = "",
         ajUrl = "",
         thePostOrCmtID = null,
-        ldCountSpan = $this.siblings('span.count'),
-        ldCountVal = parseInt(ldCountSpan.html()),
+        ldCountSpan = null, /*17-11-Ehsan*/
+        ldCountVal = null, /*17-11-Ehsan*/
         baseUrl = $this.closest('body').attr('data-baseurl'); /*27-May-Ehsan*/
     
     //console.log(baseUrl);        
     /*27-May-Ehsan*/
     if (dataLiked > 1) { 
         theOtherClass = "span.like-img";
+        ldCountSpan = $this.closest('.like-dislike-comment').siblings('ul.list-inline').find('li:eq(1) span.count'); /*17-11-Ehsan*/
     } else {
         theOtherClass = "span.dislike-img";
+        ldCountSpan = $this.closest('.like-dislike-comment').siblings('ul.list-inline').find('li:eq(0) span.count'); /*17-11-Ehsan*/
     }
     var theOther = $this.parent().parent().find(theOtherClass);
+    ldCountVal = parseInt(ldCountSpan.html()); /*17-11-Ehsan*/
 
     if ((dataLiked == 0) || (dataLiked == 2)) {
       ldCountSpan.html(++ldCountVal);
@@ -351,6 +354,7 @@
         videlem.html('<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/'+theReturned.vidsrc+'" allowfullscreen></iframe>');
           
       }
+
       var lkDlkCmtDiv = $('<div></div>', {
           class: "row like-dislike-comment"
       }).appendTo(theLg9Div);
@@ -359,10 +363,10 @@
           class: "col-lg-4 col-md-4 col-sm-4 col-xs-4"
       }).appendTo(lkDlkCmtDiv);
 
-      $('<span></span>', {
+      /*$('<span></span>', {
           class: "pull-right count",
           text: "0"
-      }).appendTo(ldcLg4Div1);
+      }).appendTo(ldcLg4Div1);*/ /*17-11-Ehsan*/
 
       var lkSpan = $('<span></span>', {
               class: "glyphicon glyphicon-thumbs-up like-img",
@@ -374,10 +378,10 @@
           class: "col-lg-4 col-md-4 col-sm-4 col-xs-4"
       }).appendTo(lkDlkCmtDiv);
 
-      $('<span></span>', {
+      /*$('<span></span>', {
           class: "pull-right count",
           text: "0"
-      }).appendTo(ldcLg4Div2);
+      }).appendTo(ldcLg4Div2);*/ /*17-11-Ehsan*/
 
       var dlkSpan = $('<span></span>', {
               class: "glyphicon glyphicon-thumbs-down dislike-img",
@@ -389,15 +393,56 @@
           class: "col-lg-4 col-md-4 col-sm-4 col-xs-4"
       }).appendTo(lkDlkCmtDiv);
 
-      $('<span></span>', {
+      /*$('<span></span>', {
           class: "pull-right count comment-count",
           text: "0"
-      }).appendTo(ldcLg4Div3);
+      }).appendTo(ldcLg4Div3);*/ /*17-11-Ehsan*/
 
       var commenterSpan = $('<span></span>', {
           class: "glyphicon glyphicon-comment comment-img cm-commenter",
           "data-reqsource": "commenter"
       }).appendTo(ldcLg4Div3);
+
+      /*START--17-11-Ehsan*/
+
+      var ulLkDlkCmtCount = $('<ul></ul>', {
+          class: "list-inline ul-like-dislike-comment-count"
+      }).appendTo(theLg9Div);
+
+      var likeCountLi = $('<li></li>').appendTo(ulLkDlkCmtCount);
+      
+      var likeCountLiSmall = $('<small></small>', {
+          text: "Likes: "
+      }).appendTo(likeCountLi);
+
+      $('<span></span>', {
+          class: "pull-right count",
+          text: "0"
+      }).appendTo(likeCountLiSmall);
+
+      var dislikeCountLi = $('<li></li>').appendTo(ulLkDlkCmtCount);
+      
+      var dislikeCountLiSmall = $('<small></small>', {
+          text: "Dislikes: "
+      }).appendTo(dislikeCountLi);
+
+      $('<span></span>', {
+          class: "pull-right count",
+          text: "0"
+      }).appendTo(dislikeCountLiSmall);
+
+      var commentCountLi = $('<li></li>').appendTo(ulLkDlkCmtCount);
+      
+      var commentCountLiSmall = $('<small></small>', {
+          text: "Comments: "
+      }).appendTo(commentCountLi);
+
+      $('<span></span>', {
+          class: "pull-right count comment-count",
+          text: "0"
+      }).appendTo(commentCountLiSmall); 
+
+      /*END--17-11-Ehsan*/
 
       $('<div></div>', {
           class: "row cm-comments",
@@ -690,10 +735,10 @@
               class: "col-lg-6 col-md-6 col-sm-6 col-xs-6",
           }).appendTo(lkDlkCmtDiv);
 
-      $('<span></span>', {
+      /*$('<span></span>', {
               class: "pull-right count",
               text: "0"
-      }).appendTo(lkImgDiv);
+      }).appendTo(lkImgDiv);*/ /*17-11-Ehsan*/
 
       var lkSpan = $('<span></span>', {
               class: "glyphicon glyphicon-thumbs-up like-img",
@@ -705,16 +750,46 @@
               class: "col-lg-6 col-md-6 col-sm-6 col-xs-6",
       }).appendTo(lkDlkCmtDiv);
 
-      $('<span></span>', {
+      /*$('<span></span>', {
               class: "pull-right count",
               text: "0"
-      }).appendTo(dlkImgDiv);
+      }).appendTo(dlkImgDiv);*/ /*17-11-Ehsan*/
 
       var dlkSpan = $('<span></span>', {
               class: "glyphicon glyphicon-thumbs-down dislike-img",
               "data-liked": "2",
               "data-liketype": "comment"
       }).appendTo(dlkImgDiv);
+
+      /*START--17-11-Ehsan*/
+
+      var ulLkDlkCmtCount = $('<ul></ul>', {
+          class: "list-inline ul-like-dislike-comment-count"
+      }).appendTo(cmCommentDiv);
+
+      var likeCountLi = $('<li></li>').appendTo(ulLkDlkCmtCount);
+      
+      var likeCountLiSmall = $('<small></small>', {
+          text: "Likes: "
+      }).appendTo(likeCountLi);
+
+      $('<span></span>', {
+          class: "pull-right count",
+          text: "0"
+      }).appendTo(likeCountLiSmall);
+
+      var dislikeCountLi = $('<li></li>').appendTo(ulLkDlkCmtCount);
+      
+      var dislikeCountLiSmall = $('<small></small>', {
+          text: "Dislikes: "
+      }).appendTo(dislikeCountLi);
+
+      $('<span></span>', {
+          class: "pull-right count",
+          text: "0"
+      }).appendTo(dislikeCountLiSmall);
+
+      /*END--17-11-Ehsan*/
 
       setLikeDislikeEvents.call(lkDlkCmtDiv);
 
@@ -768,7 +843,7 @@
                 $this.on('newCommentLoaded', function(){
                     animateNewComment.call($this.parent().prev()); //Sending the new cm-comment.
                     
-                    var comCountSpan = $(this).closest(".cm-comments").prev(".like-dislike-comment").find("span.comment-count"),
+                    var comCountSpan = $(this).closest(".cm-comments").prev(".ul-like-dislike-comment-count").find("span.comment-count"), /*17-11-Ehsan*/
                         comCountVal = parseInt(comCountSpan.html());
                     
                     comCountSpan.html(++comCountVal);
@@ -826,9 +901,9 @@
           //console.log(ownerPostID);
           //console.log(reqSource);
       if (reqSource === "viewmore") {
-          divToThrowAfter = $this.parent().parent(); //17-6-Ehsan
+          divToThrowAfter = $this.parent().parent();
       } else if (reqSource === "commenter") {
-          cmCommentsDiv = $this.parent().parent().next(".cm-comments");
+          cmCommentsDiv = $this.parent().parent().siblings(".cm-comments");//16-11-EhsanTBC
 
           /*START17-6-Ehsan*/
           if (theReturned['length'] > 3) {
@@ -1023,10 +1098,10 @@
               class: "col-lg-6 col-md-6 col-sm-6 col-xs-6"
           }).appendTo(lkDlkCmtDiv);
 
-          $('<span></span>', {
+          /*$('<span></span>', {
               class: "pull-right count",
               text: theReturned['comments'][comCount].like
-          }).appendTo(lkImgDiv);
+          }).appendTo(lkImgDiv);*/ /*17-11-Ehsan*/
 
           var lkSpan = $('<span></span>', {
                   class: "glyphicon glyphicon-thumbs-up like-img",
@@ -1043,10 +1118,10 @@
               class: "col-lg-6 col-md-6 col-sm-6 col-xs-6"
           }).appendTo(lkDlkCmtDiv);
 
-          $('<span></span>', {
+          /*$('<span></span>', {
               class: "pull-right count",
               text: theReturned['comments'][comCount].dislike
-          }).appendTo(dlkImgDiv);
+          }).appendTo(dlkImgDiv);*/ /*17-11-Ehsan*/
 
           var dlkSpan = $('<span></span>', {
                   class: "glyphicon glyphicon-thumbs-down dislike-img",
@@ -1059,6 +1134,36 @@
               dlkSpan.attr("data-liked", "3");
           }
           //!!!like-dislike-comment
+
+          /*START--17-11-Ehsan*/
+
+          var ulLkDlkCmtCount = $('<ul></ul>', {
+              class: "list-inline ul-like-dislike-comment-count"
+          }).appendTo(cmCommentDiv);
+
+          var likeCountLi = $('<li></li>').appendTo(ulLkDlkCmtCount);
+          
+          var likeCountLiSmall = $('<small></small>', {
+              text: "Likes: "
+          }).appendTo(likeCountLi);
+
+          $('<span></span>', {
+              class: "pull-right count",
+              text: theReturned['comments'][comCount].like
+          }).appendTo(likeCountLiSmall);
+
+          var dislikeCountLi = $('<li></li>').appendTo(ulLkDlkCmtCount);
+          
+          var dislikeCountLiSmall = $('<small></small>', {
+              text: "Dislikes: "
+          }).appendTo(dislikeCountLi);
+
+          $('<span></span>', {
+              class: "pull-right count",
+              text: theReturned['comments'][comCount].dislike
+          }).appendTo(dislikeCountLiSmall);
+
+          /*END--17-11-Ehsan*/
 
           setLikeDislikeEvents.call(lkDlkCmtDiv);
 
@@ -1159,7 +1264,7 @@
 
   function showThemComments() {
       var $this = this,
-          cm_comments = $this.parent().parent().next('div.cm-comments');
+          cm_comments = $this.parent().parent().siblings('div.cm-comments'); /*17-11-Ehsan*/
           /*comment_in = cm_comments.children().last();*/
           /*availability = cm_comments.attr("data-state");*/
       //console.log(scrollToTop);      
@@ -1182,7 +1287,7 @@
       var $this = $(this),
           theBaseTime = $('body').attr('data-basetime'); //5-7-Ehsan;
       $this.off('click');/*27-May-Ehsan*/
-      var theCmComments = $this.parent().parent().next('div.cm-comments'),
+      var theCmComments = $this.parent().parent().siblings('div.cm-comments'), //16-11-EhsanTBC
           commentsContent = theCmComments.children(),
           thePostID = $this.closest(".post-display").attr("id"),
           ajUrl = "getcomments/"+thePostID,
@@ -1729,7 +1834,7 @@
             console.log('Deleted comments:'); /*28-May-Ehsan*/
             var thePostDisplay = $('div.post-display[id='+cmtOwnerPost+']');
             thePostDisplay.find('div.cm-comments > div.cm-comment[id='+cmtOwnerPost+'-'+cmtOrPostId+']').hide();
-            var countSpan = thePostDisplay.find('div.post-text > div.like-dislike-comment span.comment-count'),
+            var countSpan = thePostDisplay.find('div.post-text > ul.ul-like-dislike-comment-count span.comment-count'), /*17-11-Ehsan*/
                 currentCount = countSpan.html(),
                 currentCount = parseInt(currentCount);
             countSpan.html(--currentCount);
@@ -1921,82 +2026,83 @@
               }
               console.log('Will bring confessions next...');
               console.log(theReturned['posts'][loopCount].confess);
-              
-              if (theReturned['posts'][loopCount].confess) {
-                console.log('About to bring confessions...');
-                //7-11-Ehsan-Start******************
-                var btnShowConfession = $('<button></button>', { 
-                  class: "btn btn-primary btn-confession",
-                  "aria-hidden": "true",
-                  "data-toggle": "modal",
-                  "data-target": "#confessionModal-"+theReturned['posts'][loopCount].id,
-                  "title": "Click this button to see the confession.",
-                  text: "Confession",
-                  "data-confessId": theReturned['posts'][loopCount].confess.id
-                }).appendTo(theLg2Div);
+              if (theReturned['posts'][loopCount].type != 1) { /*17-11-Ehsan*/
+                if (theReturned['posts'][loopCount].confess) {
+                  console.log('About to bring confessions...');
+                  //7-11-Ehsan-Start******************
+                  var btnShowConfession = $('<button></button>', { 
+                    class: "btn btn-primary btn-confession",
+                    "aria-hidden": "true",
+                    "data-toggle": "modal",
+                    "data-target": "#confessionModal-"+theReturned['posts'][loopCount].id,
+                    "title": "Click this button to see the confession.",
+                    text: "Confession",
+                    "data-confessId": theReturned['posts'][loopCount].confess.id
+                  }).appendTo(theLg2Div);
+                  
+                  $('<span></span>', {
+                    class: "confession-view-count-span",
+                    text: theReturned['posts'][loopCount].confess.view
+                  }).appendTo(theLg2Div);
+
+                  btnShowConfession.on("click", function(){
+                    causeConfessionView.call(this);
+                  });
+
+                  //7-11-Ehsan-End******************
                 
-                $('<span></span>', {
-                  class: "confession-view-count-span",
-                  text: theReturned['posts'][loopCount].confess.view
-                }).appendTo(theLg2Div);
+                  var divModal = $('<div></div>', {
+                      class: "modal fade",
+                      id: "confessionModal-"+theReturned['posts'][loopCount].id,
+                      role: "dialog"
+                  }).appendTo(thePostDisplay);
 
-                btnShowConfession.on("click", function(){
-                  causeConfessionView.call(this);
-                });
+                      var divModalDialog = $('<div></div>', {
+                          class: "modal-dialog"
+                      }).appendTo(divModal);
 
-                //7-11-Ehsan-End******************
-              
-                var divModal = $('<div></div>', {
-                    class: "modal fade",
-                    id: "confessionModal-"+theReturned['posts'][loopCount].id,
-                    role: "dialog"
-                }).appendTo(thePostDisplay);
+                          var divModalContent = $('<div></div>', {
+                              class: "modal-content"
+                          }).appendTo(divModalDialog);
 
-                    var divModalDialog = $('<div></div>', {
-                        class: "modal-dialog"
-                    }).appendTo(divModal);
+                              var divModalHeader = $('<div></div>', {
+                                  class: "modal-header"
+                              }).appendTo(divModalContent);
 
-                        var divModalContent = $('<div></div>', {
-                            class: "modal-content"
-                        }).appendTo(divModalDialog);
+                                  $('<button></button>', {
+                                      class: "close modal-close",
+                                      "data-dismiss": "modal",
+                                      type: "button",
+                                      text: "X"
+                                  }).appendTo(divModalHeader);
 
-                            var divModalHeader = $('<div></div>', {
-                                class: "modal-header"
-                            }).appendTo(divModalContent);
+                                  $('<h4></h4>', {
+                                      class: "modal-title",
+                                      text: "Confession"
+                                  }).appendTo(divModalHeader);
+                              
+                              var divModalBody = $('<div></div>', {
+                                  class: "modal-body"
+                              }).appendTo(divModalContent);                                                
 
-                                $('<button></button>', {
-                                    class: "close modal-close",
-                                    "data-dismiss": "modal",
-                                    type: "button",
-                                    text: "X"
-                                }).appendTo(divModalHeader);
+                                  $('<blockquote></blockquote>', {
+                                      class: "confession-text",
+                                      text: theReturned['posts'][loopCount].confess.confess //7-11-Ehsan
+                                  }).appendTo(divModalBody);
 
-                                $('<h4></h4>', {
-                                    class: "modal-title",
-                                    text: "Confession"
-                                }).appendTo(divModalHeader);
-                            
-                            var divModalBody = $('<div></div>', {
-                                class: "modal-body"
-                            }).appendTo(divModalContent);                                                
+                              var divModalFooter = $('<div></div>', {
+                                  class: "modal-footer"
+                              }).appendTo(divModalContent);                                                
 
-                                $('<blockquote></blockquote>', {
-                                    class: "confession-text",
-                                    text: theReturned['posts'][loopCount].confess.confess //7-11-Ehsan
-                                }).appendTo(divModalBody);
+                                  $('<button></button>', {
+                                      class: "btn btn-default button",
+                                      "data-dismiss": "modal",
+                                      type: "button",
+                                      text: "Close"
+                                  }).appendTo(divModalFooter);
 
-                            var divModalFooter = $('<div></div>', {
-                                class: "modal-footer"
-                            }).appendTo(divModalContent);                                                
-
-                                $('<button></button>', {
-                                    class: "btn btn-default button",
-                                    "data-dismiss": "modal",
-                                    type: "button",
-                                    text: "Close"
-                                }).appendTo(divModalFooter);
-
-              } //if (theReturned['posts'][loopCount].confess)
+                } //if (theReturned['posts'][loopCount].confess)
+              } /*17-11-Ehsan*/
           } //if (allowFUnCon)
           
           var theLg9Div = $('<div></div>', {
@@ -2131,10 +2237,10 @@
               class: "col-lg-4 col-md-4 col-sm-4 col-xs-4"
           }).appendTo(lkDlkCmtDiv);
 
-          $('<span></span>', {
+          /*$('<span></span>', {
               class: "pull-right count",
               text: theReturned['posts'][loopCount].like
-          }).appendTo(ldcLg4Div1);
+          }).appendTo(ldcLg4Div1);*/ /*17-11-Ehsan*/
 
           var lkSpan = $('<span></span>', {
                   class: "glyphicon glyphicon-thumbs-up like-img",
@@ -2151,10 +2257,10 @@
               class: "col-lg-4 col-md-4 col-sm-4 col-xs-4"
           }).appendTo(lkDlkCmtDiv);
 
-          $('<span></span>', {
+          /*$('<span></span>', {
               class: "pull-right count",
               text: theReturned['posts'][loopCount].dislike
-          }).appendTo(ldcLg4Div2);
+          }).appendTo(ldcLg4Div2);*/ /*17-11-Ehsan*/
 
           var dlkSpan = $('<span></span>', {
                   class: "glyphicon glyphicon-thumbs-down dislike-img",
@@ -2172,10 +2278,10 @@
               class: "col-lg-4 col-md-4 col-sm-4 col-xs-4"
           }).appendTo(lkDlkCmtDiv);
 
-          $('<span></span>', {
+          /*$('<span></span>', {
               class: "pull-right count comment-count",
               text: theReturned['posts'][loopCount].comment
-          }).appendTo(ldcLg4Div3);
+          }).appendTo(ldcLg4Div3);*/ /*17-11-Ehsan*/
 
           var commenterSpan = $('<span></span>', {
               class: "glyphicon glyphicon-comment comment-img cm-commenter",
@@ -2183,6 +2289,47 @@
           }).appendTo(ldcLg4Div3);
           
           //  ! ! like-dislike-comment  
+
+          /*START--17-11-Ehsan*/
+
+          var ulLkDlkCmtCount = $('<ul></ul>', {
+              class: "list-inline ul-like-dislike-comment-count"
+          }).appendTo(theLg9Div);
+
+          var likeCountLi = $('<li></li>').appendTo(ulLkDlkCmtCount);
+          
+          var likeCountLiSmall = $('<small></small>', {
+              text: "Likes: "
+          }).appendTo(likeCountLi);
+
+          $('<span></span>', {
+              class: "pull-right count",
+              text: theReturned['posts'][loopCount].like
+          }).appendTo(likeCountLiSmall);
+
+          var dislikeCountLi = $('<li></li>').appendTo(ulLkDlkCmtCount);
+          
+          var dislikeCountLiSmall = $('<small></small>', {
+              text: "Dislikes: "
+          }).appendTo(dislikeCountLi);
+
+          $('<span></span>', {
+              class: "pull-right count",
+              text: theReturned['posts'][loopCount].dislike
+          }).appendTo(dislikeCountLiSmall);
+
+          var commentCountLi = $('<li></li>').appendTo(ulLkDlkCmtCount);
+          
+          var commentCountLiSmall = $('<small></small>', {
+              text: "Comments: "
+          }).appendTo(commentCountLi);
+
+          $('<span></span>', {
+              class: "pull-right count comment-count",
+              text: theReturned['posts'][loopCount].comment
+          }).appendTo(commentCountLiSmall); 
+
+          /*END--17-11-Ehsan*/
           
           $('<div></div>', {
               class: "row cm-comments"

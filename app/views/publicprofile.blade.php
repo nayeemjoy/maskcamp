@@ -29,47 +29,18 @@
           
           <div class="wrapper">
           
-              <div class="row">
-                <div class="mobile-display-header mobile-display-header-p well navbar-fixed-top">Profile</div><!--01-07-15-->    
+                <div class="mobile-display-header mobile-display-header-p well navbar-fixed-top">Profile</div>    
+                
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                  <ul id="myTab" class="nav nav-justified nav-tabs tab-system profile-mobile">
-                     <li class="active" data-viewmoretype="4" data-scrollfinished="no"> <!-- 5-7-Ehsan -->
-                        <a href="#posts" data-toggle="tab" class="posts-polls-tab">
-                           Friends Room Posts
-                        </a>
-                     </li>
-                     <li data-viewmoretype="5" data-scrollfinished="no"><a href="#polls" data-toggle="tab" class="posts-polls-tab">Common Room Posts</a></li><!-- 5-7-Ehsan -->
-                     <li data-viewmoretype="6" data-scrollfinished="no"><a href="#campus" data-toggle="tab" class="posts-polls-tab">Campus Posts</a></li><!-- 5-7-Ehsan -->
-                  </ul>
-                  <div id="myTabContent" class="tab-content">
-                    <!--**********START***************************** 5-7-Ehsan -->
-                    <div class="tab-pane fade in active" id="posts">                                             
-                        @include('sections.createPost')
-                        <div class="btn-view-more-posts">             
-                          <div class="view-more-posts" data-viewmoretype="4" data-lastpost="0"><img src="{{asset('img/379.GIF')}}"></div> <!-- 5-7-Ehsan -->
-                        </div>
-                        
+                  
+                    
+                    <div class="btn-view-more-posts">             
+                      <div class="view-more-posts" data-viewmoretype="5" data-lastpost="0"><img src="{{asset('img/379.GIF')}}"></div> 
                     </div>
-                        
-                    <div class="tab-pane fade" id="polls">
-                        @include('sections.createPost')
-                        <div class="btn-view-more-posts">             
-                          <div class="view-more-posts" data-viewmoretype="5" data-lastpost="0"><img src="{{asset('img/379.GIF')}}"></div> <!-- 5-7-Ehsan -->
-                        </div>
 
-                     </div>
-                     
-                     <div class="tab-pane fade" id="campus">                     
-                        @include('sections.createPost')
-                        <div class="btn-view-more-posts"> 
-                          <div class="view-more-posts" data-viewmoretype="6" data-lastpost="0"><img src="{{asset('img/379.GIF')}}"></div> <!-- 5-7-Ehsan -->
-                        </div>
-                        
-                    </div>
-                    <!--**********END***************************** 5-7-Ehsan -->
-                  </div>
+                
                 </div> <!-- .col-lg-12 col-md-12 col-sm-12 col-xs-12 -->
-              </div>  <!-- .row -->
+              
              <!-- !E -->       
           </div> <!-- .wrapper -->
 
@@ -116,42 +87,7 @@
         <!-- eight side bar begin -->
         @include('sections.right_sidebar_for_public_profile')
         <!-- right side bar end -->
-        
-        <!-- Commented this out-19-May-2015-Ehsan -->
-        <!-- <div class="modal fade" id="addModal"  role="dialog">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                      <button type="button" class="close modal-close" data-dismiss="modal">X</button>
-                      <h4 class="modal-title">Add another confession</h4>
-                    </div>
-                    <div class="modal-body">                                            
-                      <textarea  id="text-input-add-con" rows="8" cols="20" class="form-control"></textarea>
-                    </div>
-                    <div class="modal-footer">
-                       <button type="button" class="btn btn-default button" data-dismiss="modal">Close</button>
-                       <button type="button" class="btn btn-default save-button">Save</button>
-                    </div>
-                </div>
-            </div>
-        </div>  -->
-        <div class="modal fade" id="editModal"  role="dialog"><!--This appears when the question button is clicked -->
-            <div class="modal-dialog modal-dialog-02">
-                <div class="modal-header">
-                    <button type="button" class="close modal-close" data-dismiss="modal">X</button>
-                    <div class="modal-content modal-content-02">
-                      <h4 class="modal-title modal-title-02">Add confession</h4><!-- 19-May-2015-Ehsan -->
-                    </div>
-                    <div class="modal-body">                                            
-                      <textarea id="text-input-edit-con" rows="8" cols="20" class="form-control"></textarea>
-                    </div>
-                    <div class="modal-footer">
-                       <button type="button" class="btn btn-default button" data-dismiss="modal">Close</button>
-                       <button type="button" data-curpage="profile" class="btn btn-default save-button" id="editMyCfsn">Save</button><!-- 23-6-Ehsan -->
-                    </div>
-                </div>
-            </div>
-        </div>     
+         
 
       </div>
 

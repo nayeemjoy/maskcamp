@@ -12,19 +12,19 @@
         </div>        
     </div>
 
-    <div class="row">
+    <!-- <div class="row">
       <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <div class="confession" title="People using MaskCamp will be able to see your confession if you update this">
           <h3 class="confession-title"><b>Confession</b></h3>
           <h5 class="confession-sub-title"><i>N.B: Confession will be deleted automatically after 24 hours.In the mean time you won't be able to edit this.</i></h5>
           <blockquote class="confession-text" id="confession">{{htmlentities($data['confess'])}}</blockquote>
           @if($data['enable'])
-          <!-- <span class="glyphicon glyphicon-plus-sign sign-gap" aria-hidden="true" data-toggle="modal" data-target="#addModal" title="Add another confession"></span> -->
-          <span class="glyphicon glyphicon-plus-sign sign-gap like-dislike-white" aria-hidden="true" data-toggle="modal" data-target="#editModal" title="Add confession"></span><!--19-May-2015-Ehsan-->
+          
+          <span class="glyphicon glyphicon-plus-sign sign-gap like-dislike-white" aria-hidden="true" data-toggle="modal" data-target="#editModal" title="Add confession"></span>
           @endif
         </div>
       </div>    
-    </div>
+    </div> -->
     
     <div class="poll-section"><!--05-23-15-turash-->
         <div class="col-lg-12">

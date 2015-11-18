@@ -239,28 +239,28 @@ header{
 /*!E*/
 
 .dislike-img{
-	/*19-May-2015-Ehsan*/
+	
 	/*transform: rotate(180deg);
 	-webkit-transform: rotate(180deg);
 	-o-transform: rotate(180deg);
 	-moz-transform: rotate(180deg);*/
-	font-size: 1.5em;
+	font-size: 1.3em; /*11-17-15-turash*/
     color: #6e4e4e;
-    /*!!!!!!19-May-2015-Ehsan*/
+    
 }
 
 .like-img{
-	/*19-May-2015-Ehsan*/
+	
 	/*position: relative;
     top: -2px;*/ 
-    font-size: 1.5em;
+    font-size: 1.3em; /*11-17-15-turash*/
     color: #6e4e4e;
-    /*!!!!!19-May-2015-Ehsan*/
+    
 }
 
 /*19-May-2015-Ehsan*/
 .comment-img {
-	font-size: 1.4em;
+	font-size: 1.3em; /*11-17-15-turash*/
     color: #B59797;	
 }
 
@@ -522,24 +522,25 @@ border-radius: 1px;/* border: 1px solid #D2D1D1; */}
 	margin-top: 5px;
 }
 
-.count{   /*05-25-15*/
-	color: #333; /*05-23-15*/
-    font-family: 'Source Sans Pro', sans-serif;
+/*11-17-15-turash*/
+.count{/*05-25-15*/
+	color: #333;/*05-23-15*/
+	font-family: 'Source Sans Pro', sans-serif;
+	margin-left: 3px;
 }
 
 @media(min-width:768px){  /*05-25-15*/
 	.count{
-		margin-top: 5px; /*07-07-15-turash 8-7-Turash*/
+		margin-top: 2px;/*07-07-15-turash 8-7-Turash*/
 	}
 }
 
 @media(max-width:767px){  /*05-25-15*/
-
 	.count{
-
-		
+	    margin-top: 2px;
 	}
 }
+/*end-11-17-15-turash*/
 
 /* E */
 #cm-left-sidebar-button {
@@ -1963,6 +1964,7 @@ the modifications in all pages**/
 	  background: rgb(255, 249, 240);
 	  border-radius: 1px;
 	  border: 1px solid rgb(220, 214, 214);
+	  text-align: center; /*17-11-Ehsan*/
 	}
 	
 	.like-dislike-comment>div{
@@ -2071,20 +2073,34 @@ the modifications in all pages**/
 	border-radius: 1px;
 }
 
+/*11-17-15-turash*/
 .confession-view-count-span {
 	display: block;
     text-align: center;
-    background-color: rgb(53, 160, 203);
+    background-color: rgb(92, 184, 92);
     border-color: #5994C7;
     width: 50%;
     margin: auto;
     margin-top: 3px;
-    border-radius: 50%;
+    border-radius: 1px;
     color: white;
+    font-size: .8em;
 }
 
-/************START*********************************************16-11-Ehsan*/
+/************START*********************************************17-11-Ehsan*/
 .usernameP {
 	color: rgb(165, 145, 145);
 }
-/************END*********************************************16-11-Ehsan*/
+
+.ul-like-dislike-comment-count {
+	margin-top: 7px;
+    color: rgb(131, 128, 128);	
+}
+/************END*********************************************17-11-Ehsan*/
+
+/*11-17-15-turash*/
+@media(max-width:767px){
+	.confession-view-count-span {
+		width:100%;
+	}
+}
