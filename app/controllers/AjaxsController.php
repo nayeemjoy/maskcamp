@@ -280,7 +280,7 @@
 				}
 				elseif($type == 7){
 
-					$posts = Post::join('users', 'users.id', '=', 'posts.user_id')->select('posts.*')->where('posts.created_at', '<=' ,$time)->where('users.disable', '0')->whereType('1')->whereHideName('0')->where('posts.user_id', Session::get('id'))->orderBy('posts.id', 'desc')->skip(Input::get('off'))->take(10)->get();/*27-May-Joy*/
+					$posts = Post::join('users', 'users.id', '=', 'posts.user_id')->select('posts.*')->where('posts.created_at', '<=' ,$time)->where('users.disable', '0')->whereType('1')->whereHideName('0')->whereNotNull('users.username')->where('posts.user_id', Session::get('id'))->orderBy('posts.id', 'desc')->skip(Input::get('off'))->take(10)->get();/*27-May-Joy*/
 				}
 				$i = 0;
 				foreach ($posts as $post) {
