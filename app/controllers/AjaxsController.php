@@ -120,6 +120,9 @@
 					$post->created_at = Carbon::now();
 					$post->feeling = $data['feel'];
 					$post->type = $data['type']; ///////////////////06-May-2015-Ehsan
+					if(isset($data['hideName'])){
+						$post->hide_name = $data['hideName'];
+					}
 					if($post->type == 2)
 					{
 						$campus = UserCampus::whereUserId(Auth::user()->id)->first();
@@ -238,7 +241,7 @@
 				} 
 				catch (Exception $e) 
 				{
-					
+					return $e->getMessage();
 				}
 				
 			}
@@ -247,6 +250,8 @@
 
 		public function viewMorePost(){
 			try {
+
+
 				$type = Input::get('type');
 				$time = Input::get('time');
 				if($type == 1){
@@ -272,6 +277,10 @@
 				}
 				elseif($type == 6){
 					$posts = Post::join('users', 'users.id', '=', 'posts.user_id')->select('posts.*')->where('posts.created_at', '<=' ,$time)->where('users.disable', '0')->whereType('2')->where('posts.user_id', Auth::user()->id)->where('posts.campus_id', Session::get('campus'))->orderBy('posts.id', 'desc')->skip(Input::get('off'))->take(10)->get();/*27-May-Joy*/
+				}
+				elseif($type == 7){
+
+					$posts = Post::join('users', 'users.id', '=', 'posts.user_id')->select('posts.*')->where('posts.created_at', '<=' ,$time)->where('users.disable', '0')->whereType('1')->whereHideName('0')->where('posts.user_id', Session::get('id'))->orderBy('posts.id', 'desc')->skip(Input::get('off'))->take(10)->get();/*27-May-Joy*/
 				}
 				$i = 0;
 				foreach ($posts as $post) {
@@ -334,7 +343,7 @@
 						$text = Emojione::shortnameToImage($text);
 
 						$name = null;
-						if($type == 2 && !$post->hide_name){
+						if(($type == 2 || $type == 7) && !$post->hide_name){
 							$user = User::find($post->user_id);
 							$name = $user->username;
 						}
@@ -362,7 +371,7 @@
 				$data['length'] = sizeof($posts);
 				return json_encode($data);
 			} catch (Exception $e) {
-					
+				// return $e->getMessage();		
 			}
 			return 'false';
 		}

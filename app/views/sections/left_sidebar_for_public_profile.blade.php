@@ -7,7 +7,7 @@
 
   <div class="row">
     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-5 profile-page-img"><!--05-23-15-Turash-->  
-        <img src="img/user.png" class="img-responsive img-rounded user-img cm-img-pop" data-userpicture="{{$data['user']['picture']}}" data-user="{{Auth::user()->id}}">  <!-- /////19-May-2015-Ehsan -->
+        <img src="{{asset('img/user.png')}}" class="img-responsive img-rounded user-img cm-img-pop" data-userpicture="{{$data['user']['picture']}}" data-user="{{$data['user']['id']}}">  <!-- /////19-May-2015-Ehsan -->
    </div>
   </div>
   

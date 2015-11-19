@@ -824,9 +824,12 @@
 			//Profile Picture And Confession Related Task of Profile 5/12/15
 				$data['confess'] = '';
 				$data['enable'] = 1;
-				$user = User::find(Auth::user()->id);
+				$user = User::find($id);
+				if(!$user){
+					return Redirect::to('/');
+				}
 				$data['user'] = $user;
-				
+				Session::put('id', $id);
 				// Available Pictures
 					$data['pictures'] = Picture::whereSex($user->sex)->orWhere('sex','none')->get();
 				// 
@@ -850,19 +853,19 @@
 			// Friends Like Dislike Percentage
 			$like = Like::whereIn('post_id',function($query){
 	                $query->select('id')->from('posts')->whereIn('user_id', function($query){
-							$query->select('friend_id')->from('friend_list')->whereUserId(Auth::user()->id);
+							$query->select('friend_id')->from('friend_list')->whereUserId(Session::get('id'));
 							});
 	                  }
 
 				)->get()->count();
 			$dislike = Dislike::whereIn('post_id',function($query){
 	                $query->select('id')->from('posts')->whereIn('user_id', function($query){
-							$query->select('friend_id')->from('friend_list')->whereUserId(Auth::user()->id);
+							$query->select('friend_id')->from('friend_list')->whereUserId(Session::get('id'));
 							});
 	                  }
 
 				)->get()->count();
-			$count = FriendList::whereUserId(Auth::user()->id)->get()->count();
+			$count = FriendList::whereUserId(Session::get('id'))->get()->count();
 			if(($like+$dislike) == 0){
 				$ratio_of_like_dislike_of_my_friends_posts = array(
 						'like' => 50, 
@@ -883,19 +886,19 @@
 			// Followers Like Dislike Percentage
 			$like = Like::whereIn('post_id',function($query){
 	                $query->select('id')->from('posts')->whereIn('user_id', function($query){
-							$query->select('follower_id')->from('followings')->whereFollowingId(Auth::user()->id);
+							$query->select('follower_id')->from('followings')->whereFollowingId(Session::get('id'));
 							});
 	                  }
 
 				)->get()->count();
 			$dislike = Dislike::whereIn('post_id',function($query){
 	                $query->select('id')->from('posts')->whereIn('user_id', function($query){
-							$query->select('follower_id')->from('followings')->whereFollowingId(Auth::user()->id);
+							$query->select('follower_id')->from('followings')->whereFollowingId(Session::get('id'));
 							});
 	                  }
 
 				)->get()->count();
-			$count = Following::whereFollowingId(Auth::user()->id)->get()->count();
+			$count = Following::whereFollowingId(Session::get('id'))->get()->count();
 			if(($like+$dislike) == 0){
 				$ratio_of_like_dislike_of_my_followers_posts = array(
 						'like' => 50, 
@@ -917,19 +920,19 @@
 			// Followings Like Dislike Percentage
 			$like = Like::whereIn('post_id',function($query){
 	                $query->select('id')->from('posts')->whereIn('user_id', function($query){
-							$query->select('following_id')->from('followings')->whereFollowerId(Auth::user()->id);
+							$query->select('following_id')->from('followings')->whereFollowerId(Session::get('id'));
 							});
 	                  }
 
 				)->get()->count();
 			$dislike = Dislike::whereIn('post_id',function($query){
 	                $query->select('id')->from('posts')->whereIn('user_id', function($query){
-							$query->select('following_id')->from('followings')->whereFollowerId(Auth::user()->id);
+							$query->select('following_id')->from('followings')->whereFollowerId(Session::get('id'));
 							});
 	                  }
 
 				)->get()->count();
-			$count = Following::whereFollowerId(Auth::user()->id)->get()->count();
+			$count = Following::whereFollowerId(Session::get('id'))->get()->count();
 			if(($like+$dislike) == 0){
 				$ratio_of_like_dislike_of_my_followings_posts = array(
 						'like' => 50, 
@@ -950,16 +953,16 @@
 			// end
 			// My Posts Like Dislike Percentage
 			$like = Like::whereIn('post_id',function($query){
-                		$query->select('id')->from('posts')->whereUserId(Auth::user()->id);
+                		$query->select('id')->from('posts')->whereUserId(Session::get('id'));
                   }
 
 			)->get()->count();
 			$dislike = Dislike::whereIn('post_id',function($query){
-                		$query->select('id')->from('posts')->whereUserId(Auth::user()->id);
+                		$query->select('id')->from('posts')->whereUserId(Session::get('id'));
                   }
 
 			)->get()->count();
-			$count = Post::whereUserId(Auth::user()->id)->get()->count();
+			$count = Post::whereUserId(Session::get('id'))->get()->count();
 			if(($like+$dislike) == 0){
 				$ratio_of_like_dislike_of_my_posts = array(
 						'like' => 50, 
@@ -976,7 +979,7 @@
 			$ratio_of_like_dislike_of_my_posts['posts'] = $count;
 			
 			// Get All Available Reports and Feelings
-			$data['feelings'] = Feeling::get();
+			// $data['feelings'] = Feeling::get();
 			$data['reports'] = Report::get();
 			$data['notifications'] = $this->getNotification();
 			//return json_encode($data['notifications']);

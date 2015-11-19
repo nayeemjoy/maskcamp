@@ -13,7 +13,6 @@
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ index.php [L]
 </IfModule>
-
 <IFModule mod_rewrite.c>
   RewriteEngine on
   RewriteCond %{HTTPS} off

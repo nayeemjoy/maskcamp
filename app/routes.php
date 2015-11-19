@@ -42,7 +42,7 @@ Route::get('/getcomments/{id}','AjaxsController@getComments');
 Route::group(array('before' => 'auth'), function()
 {
 //Ajaxs
-	Route::post('/createpost','AjaxsController@createPost');
+	Route::post('/createpost','AjaxsController@createPost');//param post=string, type = 0 | 1 | 2, feel = feel_id, hideName = 1(if wansts to hide) 
 	Route::get('/viewmoreposts','AjaxsController@viewMorePost');//viewmoreposts?off=5
 
 	Route::post('/createcomment/{id}','AjaxsController@createComment');
