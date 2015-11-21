@@ -1085,7 +1085,7 @@
 					}
 					
 				}
-				elseif($notification->type == 2){
+				elseif($notification->type == 3){
 					$comment = Comment::wherePostId($notification->post_id)->get()->count() - $notification->comment;
 					if($comment > 0){
 						$post = Post::find($notification->post_id);
@@ -1124,7 +1124,7 @@
 				$data['notifications'][$i]['seen'] = $notification->seen;
 					}
 				}
-				elseif($notification->type == 3){
+				elseif($notification->type == 4){
 					$post = Post::find($notification->post_id)->post;
 					$post = ' "'.str_limit($post, 20,'...').'"';
 					if($notification->like == 1){
@@ -1143,7 +1143,7 @@
 				}
 				$data['notifications'][$i]['seen'] = $notification->seen;
 				}
-				elseif($notification->type == 4){
+				elseif($notification->type == 5){
 					$post = Comment::find($notification->dislike);
 					if($post)
 					{

@@ -72,7 +72,7 @@
 				}
 				try {
 					if($comment->save()){
-						DB::table('notifications')->where('type', '2')->where('post_id',$comment->post_id)->update(array('seen' => 0,'updated_at' => Carbon::now()));
+						DB::table('notifications')->where('type', '3')->where('post_id',$comment->post_id)->update(array('seen' => 0,'updated_at' => Carbon::now()));
 						// Comment Process
 						// Edited
 						$notification = Notification::whereUserId($comment->user_id)->wherePostId($comment->post_id)->first();
@@ -87,7 +87,7 @@
 						{
 							$notification = new Notification;
 							$notification->user_id = $comment->user_id;
-							$notification->type = 2;
+							$notification->type = 3;
 							$notification->seen = 2;
 							$notification->comment = Comment::wherePostId($comment->post_id)->get()->count();
 							$notification->post_id = $comment->post_id;
@@ -150,6 +150,13 @@
 						$notification = new Notification;
 						$notification->user_id = $post->user_id;
 						$notification->type = 2;
+						$notification->post_id = $post->id;
+						$notification->created_at = Carbon::now();
+						$notification->updated_at = Carbon::now();
+						$notification->save();
+						$notification = new Notification;
+						$notification->user_id = $post->user_id;
+						$notification->type = 3;
 						$notification->post_id = $post->id;
 						$notification->created_at = Carbon::now();
 						$notification->updated_at = Carbon::now();
@@ -483,7 +490,7 @@
 					{
 						if($like->save())
 						{
-							DB::table('notifications')->where('type', '1')->where('post_id',$like->post_id)->update(array('seen' => 0,'updated_at' => Carbon::now()));
+							DB::table('notifications')->where('type', '2')->where('post_id',$like->post_id)->update(array('seen' => 0,'updated_at' => Carbon::now()));
 							return 'true';
 						}
 						
@@ -736,7 +743,7 @@
 				if($type == 0){
 					$post = Post::find($id);
 					if($post){
-						$notification = Notification::where('user_id',$post->user_id)->where('type', 3)->where('post_id',$post->id)->first();
+						$notification = Notification::where('user_id',$post->user_id)->where('type', 4)->where('post_id',$post->id)->first();
 						if($notification){
 							$notification->like = $notification->like + 1;
 							$notification->seen = 0;
@@ -748,13 +755,14 @@
 						{
 							$notification = new Notification;
 							$notification->user_id = $post->user_id;
-							$notification->type = 3;
+							$notification->type = 4;
 							$notification->post_id = $post->id;
 							$notification->like = 1;
 							$notification->seen = 0;
 							$notification->created_at = Carbon::now();
 							$notification->updated_at = Carbon::now();
 							$notification->save();
+							// return 'ok';
 						}
 						return 'true';
 					}
@@ -763,7 +771,7 @@
 				{
 					$comment = Comment::find($id);
 					if($comment){
-						$notification = Notification::where('user_id',$comment->user_id)->where('type', 4)->where('post_id',$comment->post_id)->where('dislike',$comment->id)->first();
+						$notification = Notification::where('user_id',$comment->user_id)->where('type', 5)->where('post_id',$comment->post_id)->where('dislike',$comment->id)->first();
 						if($notification){
 							$notification->like = $notification->like + 1;
 							$notification->seen = 0;
@@ -776,7 +784,7 @@
 						{
 							$notification = new Notification;
 							$notification->user_id = $comment->user_id;
-							$notification->type = 4;
+							$notification->type = 5;
 							$notification->post_id = $comment->post_id;
 							$notification->like = 1;
 							
@@ -1020,5 +1028,126 @@
 						'status'  => false
 					]);
 			
+		}
+		public function getNotification(){
+			$off = Input::get('off');
+			$notifications = Notification::whereUserId(Auth::user()->id)->where('seen','!=',2)->orderBy('updated_at', 'desc')->skip(Input::get('off'))->take('18446744073709551615')->get();
+			if(count($notifications) == 0){
+				return '404';
+			}
+			$date = Carbon::parse(Input::get('date'));
+
+			$data['notifications'] = null;
+			$i = 0;
+			$size = 0;
+			foreach ($notifications as $notification){
+				
+				$dec = 1;
+				if($notification->type == 1){
+					$like = Like::wherePostId($notification->post_id)->get()->count() - $notification->like;
+					// $dislike = Dislike::wherePostId($notification->post_id)->get()->count() - $notification->dislike;
+					if($like > 0){
+						// $ss = $like == 1? '': 's';
+						$msg = $like;
+						// $msg = 'You have <b>'.$msg.'</b> in your Post';
+					}
+					else{
+						$dec = 0;
+					}
+					$post = Post::find($notification->post_id)->post;
+					$post = ' "'.str_limit($post, 20,'...').'"';
+				}
+				elseif($notification->type == 2){
+					$dislike = Dislike::wherePostId($notification->post_id)->get()->count() - $notification->dislike;
+
+					if($dislike > 0){
+						// $ss = $dislike == 1 ? '': 's';
+						$msg = $dislike;//.' new dislike'.$ss;
+						// $msg = 'You have <b>'.$msg.'</b> in your Post';
+					}
+					else{
+						$dec = 0;
+					}
+					$post = Post::find($notification->post_id)->post;
+					$post = ' "'.str_limit($post, 20,'...').'"';
+				}
+				elseif($notification->type == 3){
+					$comment = Comment::wherePostId($notification->post_id)->get()->count() - $notification->comment;
+					if($comment > 0){
+						$msg = $comment;
+
+					}
+					else{
+						$dec = 0;
+					}
+					$post = Post::find($notification->post_id)->post;
+					$post = ' "'.str_limit($post, 20,'...').'"';
+				}
+				elseif($notification->type == 4){
+					$post = Post::find($notification->post_id)->post;
+					$post = ' "'.str_limit($post, 20,'...').'"';
+					$msg = $notification->like;
+					
+				}
+				elseif($notification->type == 5){
+					$post = Comment::find($notification->dislike);
+					if($post){
+						$post = $post->comment;
+						$post = ' "'.str_limit($post, 20,'...').'"';
+						$msg = $notification->like;
+					}
+					else{
+						$notification->delete();
+						$dec = 0;
+					}			
+				}
+				if($dec){
+
+					if($i == 10){
+					 	$data['hasMore'] = true;
+					 	break;
+					}
+					$message = [
+						'id' => $notification->id,
+						'type' => $notification->type,
+						'message' => [
+							'count' => $msg,
+							'post' => $post 
+						],
+						'seen' => $notification->seen,
+						'ago' => Carbon::parse($notification->updated_at)->diffForHumans()
+					];
+					// $data['notifications'][$i]['id'] = $notification->id;
+					// $data['notifications'][$i]['msg'] = $msg.'<br/>'.$post;
+					// $data['notifications'][$i]['ago'] = Carbon::parse($notification->updated_at)->diffForHumans();
+					$data['notifications'][$i] = $message;
+					if($notification->seen == 0){
+						$size++;
+					}
+					// $data['notifications'][$i]['seen'] = $notification->seen;	
+					$difference = $date->diff($notification->updated_at)->days;
+					if($difference >= 1){
+						//echo $notification->updated_at.'<br>';	
+						$date = Carbon::parse($notification->updated_at);
+						//echo $i.'<br>';
+						$data['notifications'][$i]['mark'] = true;//$notification->updated_at;
+					}
+					else{
+						$data['notifications'][$i]['mark'] = false;
+						
+					}
+
+					$i++;
+				}
+				
+				$off++;	
+				// if($i == 10) break;
+			}
+			// return json_encode();
+			// $view['msg'] = $data;//View::make('ajax.notification')->withData($data)->render();
+			$data['length'] = $i;
+			$data['off'] = $off;
+			$data['date'] = $date.'';
+			return Response::json($data);
 		}
 	}
