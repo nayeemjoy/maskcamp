@@ -9,7 +9,7 @@
       @if($data['page'] == "home")
       <div class="row">
         <div class="col-xs-12 howToUse">   
-          <button class="btn btn-success btn-modified" aria-hidden="true" data-toggle="modal" data-target="#welcomeModal">How To Use</button><!--11/07/15-turash-->
+          <button class="btn btn-blue btn-primary btn-modified" aria-hidden="true" data-toggle="modal" data-target="#welcomeModal">How To Use</button><!--11/07/15-turash-->
         </div>
       </div>
       @endif

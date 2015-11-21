@@ -209,6 +209,7 @@
     <script src="js/Chart.min.js"></script>
     <script src="js/script.js"></script>
     <script src="js/cm-xs-sidebars.js"></script>
+    <script src="js/smoothscroll.js"></script>
     <script type="text/javascript">
         $(document).ready(function(){
         

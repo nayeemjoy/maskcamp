@@ -384,6 +384,7 @@
     <script src="{{asset('js/Chart.min.js')}}"></script>
     <script src="{{asset('js/script.js')}}"></script>
     <script src="{{asset('js/cm-xs-sidebars.js')}}"></script>
+    <script src="js/smoothscroll.js"></script>
     <script type="text/javascript">
          $(document).ready(function(){
 

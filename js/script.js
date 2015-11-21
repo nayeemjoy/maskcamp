@@ -608,7 +608,7 @@
                 post: theTextarea[0].value,
                 feel: theFeel,
                 type: thePosttype,
-                hidename: hideName /*16-11-Ehsan*/
+                hideName: hideName /*16-11-Ehsan*/
               }
           }).promise();
 
@@ -1902,6 +1902,7 @@
 
       var $this = this,
           divToThrowAfter = null,
+          divToThrowBefore = null, /*21-11-Ehsan*/
           viewMoreType = "",
           selfUserID = $('body').attr('data-user'), /*27-May-Ehsan*/
           loopLimit = 0,
@@ -1932,9 +1933,16 @@
           
           //$('div.section-02 > div.wrapper > div.post-display-section').remove(); //5-7-Ehsan
       } else if (caller == "viewmore") {
-          
-          divToThrowAfter = $this.parent().prev(); //Eve-26-May-Ehsan
+          /*START-21-11-Ehsan*/
           viewMoreType = parseInt($this.attr('data-viewmoretype'));
+
+          if (viewMoreType == 7) {
+            divToThrowBefore = $this.parent();
+          } else {
+            divToThrowAfter = $this.parent().prev();
+          }
+
+          /*END-21-11-Ehsan*/
           loopLimit = theReturned["length"]; //5-7-Ehsan (theReturned["length"] > 5)?5:
       }
 
@@ -1942,10 +1950,17 @@
 
       for(loopCount = 0; loopCount < loopLimit; loopCount++) {
           //console.log(loopCount);
-
-          var theRowOfPost = $("<div></div>", {
-              class: "row post-display-section"
-          }).insertAfter(divToThrowAfter);
+          /*START-21-11-Ehsan*/
+          if (viewMoreType == 7) {
+            var theRowOfPost = $("<div></div>", {
+                class: "row post-display-section"
+            }).insertBefore(divToThrowBefore);
+          } else {
+            var theRowOfPost = $("<div></div>", {
+                class: "row post-display-section"
+            }).insertAfter(divToThrowAfter);
+          }
+          /*END-21-11-Ehsan*/
 
           var thePostDisplay = $("<div></div>", {
               class: "post-display",
@@ -2109,16 +2124,20 @@
               class: "col-lg-8 col-md-8 col-sm-7 col-xs-7 post-text" //5-7-Ehsan
           }).appendTo(thePostDisplay);
           
-          /*START--16-11-Ehsan*/
+          /*START--21-11-Ehsan*/
           if (theReturned['posts'][loopCount].name) {
             
+            var theNameA = $('<a></a>', {
+                href: baseUrl+"/profile/"+theReturned['posts'][loopCount].user_id
+            }).appendTo(theLg9Div);
+
             var theNameP = $('<p></p>', {
                 class: "usernameP",
                 text: theReturned['posts'][loopCount].name
-            }).appendTo(theLg9Div);
+            }).appendTo(theNameA);
 
           }
-          /*END--16-11-Ehsan*/
+          /*END--21-11-Ehsan*/
           
           // Feeling and Time
 
@@ -2492,7 +2511,7 @@
           theRowOfPost.addClass('hiddenpostpart'); //5-7-Ehsan
           console.log('adding class: hiddenpostpart');
           
-          divToThrowAfter = theRowOfPost; /*Eve-28-May*/
+          if (viewMoreType != 7) divToThrowAfter = theRowOfPost; /*21-11-Ehsan*/
 
           commenterSpan.trigger('click'); /*28-May*/
 
@@ -2525,9 +2544,9 @@
         viewMoreType = parseInt($this.attr('data-viewmoretype')),
         listOfHiddenPosts = null;
 
-    if (viewMoreType >= 4) { //23-6-Ehsan
+    if ((viewMoreType >= 4) && (viewMoreType <= 6)) { //21-11-Ehsan
         listOfHiddenPosts = $this.closest('.tab-pane').find('div.post-display-section.hiddenpostpart');
-    } else if (viewMoreType < 4) { //23-6-Ehsan
+    } else if ((viewMoreType < 4) || (viewMoreType == 7)) { //21-11-Ehsan
         listOfHiddenPosts = $('div.post-display-section.hiddenpostpart');      
     }
 
@@ -3206,4 +3225,54 @@
 
   /******end-11/08/15-Turash*****/
 
+  //******************************************************user-name add functionality.
+  //**********************************************************************************
+  //**********************************************************************************
+
+  $("body").on("click", "#name-add", function(){
+    var $this = $(this),
+        baseUrl = $this.closest('body').attr('data-baseurl');
+
+    var ajRes = $.ajax({
+        url: baseUrl+"/setusername",
+        type: "POST",
+        dataType: "json",
+        data: {
+            name: $this.parent().siblings().children('input')[0].value
+        }
+    }).promise();
+
+    ajRes.done( function( theReturned ) { 
+      
+      if (theReturned['status'] == false) { 
+
+        $this.parent().parent().siblings('span').html(theReturned['message']['name'][0]);
+
+        console.log(theReturned);
+      } else if (theReturned['status'] == true) {
+        $this.html("Edit!");
+        var divUserNameArea = $('div.user-name-area');
+        
+        divUserNameArea.find('button[data-toggle=popover] span.glyphicon')
+                .removeClass('glyphicon-plus').addClass('glyphicon-pencil');
+        
+        divUserNameArea.find('button[data-toggle=popover] span.user-name-pop-btn')
+                .removeClass('glyphicon-plus').html("Edit Name");
+        
+        divUserNameArea.find('div#popover-content button#name-add').html('Edit');
+        divUserNameArea.find('div#popover-content input[type=text]').attr("placeholder", $this.parent().siblings().children('input')[0].value);
+
+        $('div.popover-content button#name-add').html("Edit");
+
+        divUserNameArea.find('button[data-toggle=popover]').trigger('click');
+      }
+
+    });
+
+    ajRes.fail(function( theReturned ){
+    
+    });
+
+  });
+  
 })(jQuery, document, window, undefined);

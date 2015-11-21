@@ -35,7 +35,7 @@
                   
                     
                     <div class="btn-view-more-posts">             
-                      <div class="view-more-posts" data-viewmoretype="5" data-lastpost="0"><img src="{{asset('img/379.GIF')}}"></div> 
+                      <div class="view-more-posts" data-viewmoretype="7" data-lastpost="0"><img src="{{asset('img/379.GIF')}}"></div> 
                     </div>
 
                 
@@ -106,6 +106,7 @@
     <script src="{{asset('js/Chart.min.js')}}"></script>
     <script src="{{asset('js/script.js')}}"></script>
     <script src="{{asset('js/cm-xs-sidebars.js')}}"></script>
+    <script src="{{asset('js/smoothscroll.js')}}"></script>
     <script>
     
       var navItem = $('.navbar-nav>li:nth-child(5)>a'); 
@@ -126,7 +127,7 @@
       }
       /*end of 01-07-15*/
       /******START****5-7-Ehsan*/
-      $('.post-area').each(function(){
+      /*$('.post-area').each(function(){
           var $this = $(this),
               viewMoreType = parseInt($this.closest('.tab-pane').find('div.btn-view-more-posts > div.view-more-posts').attr('data-viewmoretype'));
           if (viewMoreType == 4) {
@@ -143,15 +144,15 @@
 
           }
           
-      });
+      });*/
       /******END****5-7-Ehsan*/
 
       //confession text field code
-      var confession = document.getElementById("confession");
+      /*var confession = document.getElementById("confession");
       var confessionText = confession.innerHTML;
 
       var textEdit = document.getElementById("text-input-edit-con");
-      textEdit.innerHTML = confessionText;
+      textEdit.innerHTML = confessionText;*/
       //end of confession text field code
       var data = [
                 {
@@ -233,7 +234,7 @@
           animateScale: true,
       });
 
-      ///19-May-2015-Ehsan
+      /*///19-May-2015-Ehsan
       //Set the current profile picture radio button as checked
       var currentPicture = $('div.section-01').find('img.user-img'),
           currentPictureVal = currentPicture.attr('data-userpicture');
@@ -245,10 +246,7 @@
               currentPicture.attr('src', $this.closest('label').find('img').attr('src')); //5-7-Ehsan
           }
       });
-      //!!!!!19-May-2015-Ehsan
-     
-     /*Modifying the post-area so that new posts don't have functionality on tags*/
-      $('div.post-area').attr('data-tagflag', '1'); /*Eve-26-May-Ehsan*/
+      //!!!!!19-May-2015-Ehsan*/
      
     </script>
 

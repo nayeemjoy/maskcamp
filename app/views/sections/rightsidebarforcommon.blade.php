@@ -278,7 +278,7 @@
             		<!-- <a class="btn btn-success poll-submit" href="#">Answer Taken</a> --><!--05-10-15-->
               	
               		
-              		<button class="btn btn-rsb poll-submit">Submit</button><!--05-10-15-->
+              		<button class="btn btn-rsb poll-submit btn-modified">Submit</button><!--05-10-15-->
               	
             </div>
             
