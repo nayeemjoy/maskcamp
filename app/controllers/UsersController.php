@@ -1024,28 +1024,8 @@
 				if($notification->type == 1){
 					$like = Like::wherePostId($notification->post_id)->get()->count() - $notification->like;
 					$dislike = Dislike::wherePostId($notification->post_id)->get()->count() - $notification->dislike;
-					if($like > 0 && $dislike > 0){
-
-						if($like == 1){
-							$msg = $like.' new like and ';
-						}
-						else
-						{
-							$msg = $like.' new likes and ';
-						}
-						if($dislike == 1)
-						{
-							$msg .= $dislike.' new dislike';
-						}
-						else{
-							$msg .= $dislike.' new dislikes';
-						}
-
-
-
-						$msg = 'You have <b>'.$msg.'</b> in your Post';
-					}
-					elseif($like > 0){
+					
+					if($like > 0){
 						if($like == 1)
 						{
 							$msg = $like.' new like';
@@ -1054,9 +1034,30 @@
 							$msg = $like.' new likes';
 						}
 						$msg = 'You have <b>'.$msg.'</b> in your Post';
-						
 					}
-					elseif ($dislike > 0) {
+					else
+					{
+						$dec = 0;
+					}
+					$post = Post::find($notification->post_id)->post;
+					$post = ' "'.str_limit($post, 20,'...').'"';
+
+					if($dec){
+						$data['notifications'][$i]['id'] = $notification->id;
+						$data['notifications'][$i]['msg'] = $msg.'<br/>'.$post;
+						$data['notifications'][$i]['ago'] = Carbon::parse($notification->updated_at)->diffForHumans();
+						$data['notifications'][$i]['type'] = $notification->type;
+						
+						if($notification->seen == 0){
+							$size++;
+						}
+						$data['notifications'][$i]['seen'] = $notification->seen;
+					}
+					
+				}
+				elseif($notification->type == 2){
+					$dislike = Dislike::wherePostId($notification->post_id)->get()->count() - $notification->dislike;
+					if ($dislike > 0) {
 						if($dislike == 1)
 						{
 							$msg = $dislike.' new dislike';
@@ -1077,13 +1078,13 @@
 						$data['notifications'][$i]['id'] = $notification->id;
 						$data['notifications'][$i]['msg'] = $msg.'<br/>'.$post;
 						$data['notifications'][$i]['ago'] = Carbon::parse($notification->updated_at)->diffForHumans();
+						$data['notifications'][$i]['type'] = $notification->type;
 						
 						if($notification->seen == 0){
-					$size++;
-				}
-				$data['notifications'][$i]['seen'] = $notification->seen;
+							$size++;
+						}
+						$data['notifications'][$i]['seen'] = $notification->seen;
 					}
-					
 				}
 				elseif($notification->type == 3){
 					$comment = Comment::wherePostId($notification->post_id)->get()->count() - $notification->comment;
@@ -1118,6 +1119,8 @@
 						$data['notifications'][$i]['id'] = $notification->id;
 						$data['notifications'][$i]['msg'] = $msg.'<br/>'.$post;
 						$data['notifications'][$i]['ago'] = Carbon::parse($notification->updated_at)->diffForHumans();
+						$data['notifications'][$i]['type'] = $notification->type;
+						
 						if($notification->seen == 0){
 					$size++;
 				}
@@ -1138,6 +1141,8 @@
 					$data['notifications'][$i]['id'] = $notification->id;
 					$data['notifications'][$i]['msg'] = $msg.'<br/>'.$post;
 					$data['notifications'][$i]['ago'] = Carbon::parse($notification->updated_at)->diffForHumans();
+						$data['notifications'][$i]['type'] = $notification->type;
+					
 					if($notification->seen == 0){
 					$size++;
 				}
@@ -1160,6 +1165,8 @@
 						$data['notifications'][$i]['id'] = $notification->id;
 						$data['notifications'][$i]['msg'] = $msg.'<br/>'.$post;
 						$data['notifications'][$i]['ago'] = Carbon::parse($notification->updated_at)->diffForHumans();
+						$data['notifications'][$i]['type'] = $notification->type;
+						
 						if($notification->seen == 0){
 							$size++;
 						}
@@ -1169,6 +1176,7 @@
 						$notification->delete();
 					}			
 				}
+				// $data['notifications'][$i]['type'] = $notification->type;
 					
 				$i++;
 				

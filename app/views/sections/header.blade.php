@@ -53,9 +53,16 @@
                                     	<li>
                                     	@endif
                                       <a target="_blank" href="{{URL::to('/viewnotification/'.$notification['id'])}}">
-                                        <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true" ></span>
-                                        <!--<span class="glyphicon glyphicon-thumbs-down pull-right" aria-hidden="true" ></span>
-                                        <span class="glyphicon glyphicon-comment pull-right" aria-hidden="true" ></span>--><!-- 17-11-Ehsan -->
+                                        @if($notification['type'] == 1)
+                                          <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true" ></span>
+                                        @elseif($notification['type'] == 2)
+                                          <span class="glyphicon glyphicon-thumbs-down pull-right" aria-hidden="true" ></span>
+                                        @elseif($notification['type'] == 3)
+                                        
+                                          <span class="glyphicon glyphicon-comment pull-right" aria-hidden="true" ></span>
+                                        
+                                        @endif
+                                        <!-- 17-11-Ehsan -->
                                         {{$notification['msg']}}<br>
                                         <small class="notification-time">{{$notification['ago']}}</small>
                                       </a>
