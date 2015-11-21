@@ -219,24 +219,18 @@
 			// EveryDay Question Calculations ENd
 
 			// Top And Flop Of the day Calculation
-			$top_post = DB::table('likes')->select(DB::raw('count(*) as like_count, post_id'))->whereIn('post_id',function($query){
-	                		$yesterday = Carbon::now()->subDay()->format('Y-m-d');
-	                		$query->select('posts.id')->from('posts')->join('users', 'users.id', '=', 'posts.user_id')->where('users.disable', '0')->whereType('0')->where('posts.created_at','like',"$yesterday%")->whereIn('posts.user_id', function($query){
-							$query->select('friend_id')->from('friend_list')->whereUserId(Auth::user()->id);
-							})->orWhere('posts.user_id',Auth::user()->id)->whereType('0')->where('users.disable', '0')->where('posts.created_at','like',"$yesterday%");
-	                  }
 
-				)->orderBy('like_count','desc')->groupBy('post_id')->first();
+			$posts = Post::select('posts.*')->join('users', 'users.id', '=', 'posts.user_id')->where('users.disable', '0')->whereType('0')->whereIn('posts.user_id', function($query){
+									$query->select('friend_id')->from('friend_list')->whereUserId(Auth::user()->id);
+							})->orWhere('posts.user_id',Auth::user()->id)->whereType('0')->where('users.disable', '0')
+			->orderBy('posts.id', 'desc')->take(30)->lists('id');
 
-			//return json_encode($top_post);
-			$flop_post = DB::table('dislikes')->select(DB::raw('count(*) as dislike_count, post_id'))->whereIn('post_id',function($query){
-					$yesterday = Carbon::now()->subDay()->format('Y-m-d');
-	                		$query->select('posts.id')->from('posts')->join('users', 'users.id', '=', 'posts.user_id')->where('users.disable', '0')->whereType('0')->where('posts.created_at','like',"$yesterday%")->whereIn('posts.user_id', function($query){
-							$query->select('friend_id')->from('friend_list')->whereUserId(Auth::user()->id);
-							})->orWhere('posts.user_id',Auth::user()->id)->whereType('0')->where('users.disable', '0')->where('posts.created_at','like',"$yesterday%");
-	                  }
 
-				)->orderBy('dislike_count','desc')->groupBy('post_id')->first();
+
+			$top_post = DB::table('likes')->select(DB::raw('count(*) as like_count, post_id'))->whereIn('post_id',$posts)->orderBy('like_count','desc')->groupBy('post_id')->first();
+
+			// return json_encode($top_post);
+			$flop_post = DB::table('dislikes')->select(DB::raw('count(*) as dislike_count, post_id'))->whereIn('post_id', $posts)->orderBy('dislike_count','desc')->groupBy('post_id')->first();
 			//return json_encode($flop_post);
 			$data['top_post'] = null;
 			if($top_post != null){
@@ -371,16 +365,16 @@
 			}
 			// ENd of Question Related Code
 			// Top And Flop Post Generation
-			$top_post = DB::table('likes')->select(DB::raw('count(*) as like_count, post_id'))->whereIn('post_id', function($query){
-			$yesterday = Carbon::now()->subDay()->format('Y-m-d');
-			 $query->select('posts.id')->from('posts')->join('users', 'users.id', '=', 'posts.user_id')->where('users.disable', '0')->whereType('1')->where('posts.created_at','like',"$yesterday%");
-			 })->groupBy('post_id')->orderBy('like_count','desc')->first();
+			$posts = Post::select('posts.*')->join('users', 'users.id', '=', 'posts.user_id')->where('users.disable', '0')->whereType('1')
+			->orderBy('posts.id', 'desc')->take(30)->lists('id');
 
 
-			$flop_post = DB::table('dislikes')->select(DB::raw('count(*) as like_count, post_id'))->whereIn('post_id', function($query){
-			 $yesterday = Carbon::now()->subDay()->format('Y-m-d');
-			 $query->select('posts.id')->from('posts')->join('users', 'users.id', '=', 'posts.user_id')->where('users.disable', '0')->whereType('1')->where('posts.created_at','like',"$yesterday%");
-			 })->groupBy('post_id')->orderBy('like_count','desc')->first();
+			$top_post = DB::table('likes')->select(DB::raw('count(*) as like_count, post_id'))->whereIn('post_id',$posts)->orderBy('like_count','desc')->groupBy('post_id')->first();
+
+			// return json_encode($top_post);
+			$flop_post = DB::table('dislikes')->select(DB::raw('count(*) as dislike_count, post_id'))->whereIn('post_id', $posts)->orderBy('dislike_count','desc')->groupBy('post_id')->first();
+			
+
 			$data['flop_post'] = null;
 			$data['top_post'] = null;
 			if($top_post){
@@ -532,18 +526,15 @@
 			// ENd of Question Related Code
 			// Top And Flop Post Generation
 			//return json_encode($data);
-			$top_post = DB::table('likes')->select(DB::raw('count(*) as like_count, post_id'))->whereIn('post_id', function($query){
-				$yesterday = Carbon::now()->subDay()->format('Y-m-d');
-				$query->select('posts.id')->from('posts')->join('users', 'users.id', '=', 'posts.user_id')->where('posts.campus_id', Session::get('campus'))
-				->where('users.disable', '0')->whereType('2')->where('posts.created_at','like',"$yesterday%");
-			 })->groupBy('post_id')->orderBy('like_count','desc')->first();
+			$posts = Post::select('posts.*')->join('users', 'users.id', '=', 'posts.user_id')->where('users.disable', '0')->whereType('2')->whereCampusId(Session::get('campus'))
+			->orderBy('posts.id', 'desc')->take(30)->lists('id');
 
 
-			$flop_post = DB::table('dislikes')->select(DB::raw('count(*) as like_count, post_id'))->whereIn('post_id', function($query){
-			 $yesterday = Carbon::now()->subDay()->format('Y-m-d');
-			 $query->select('posts.id')->from('posts')->join('users', 'users.id', '=', 'posts.user_id')->where('users.disable', '0')->whereType('2')->where('posts.campus_id', Session::get('campus'))
-			->where('posts.created_at','like',"$yesterday%");
-			 })->groupBy('post_id')->orderBy('like_count','desc')->first();
+			$top_post = DB::table('likes')->select(DB::raw('count(*) as like_count, post_id'))->whereIn('post_id',$posts)->orderBy('like_count','desc')->groupBy('post_id')->first();
+
+			// return json_encode($top_post);
+			$flop_post = DB::table('dislikes')->select(DB::raw('count(*) as dislike_count, post_id'))->whereIn('post_id', $posts)->orderBy('dislike_count','desc')->groupBy('post_id')->first();
+			
 			$data['flop_post'] = null;
 			$data['top_post'] = null;
 			if($top_post){
