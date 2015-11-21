@@ -4,15 +4,8 @@
 	header{
 	
 		padding-top: 1.1em;
-	        max-height: 67px;
-	        background: rgb(73,192,240); /* Old browsers */
-		background: -moz-linear-gradient(top,  rgba(73,192,240,1) 0%, rgba(34,132,170,1) 100%); /* FF3.6+ */
-		background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(73,192,240,1)), color-stop(100%,rgba(34,132,170,1))); /* Chrome,Safari4+ */
-		background: -webkit-linear-gradient(top,  rgba(73,192,240,1) 0%,rgba(34,132,170,1) 100%); /* Chrome10+,Safari5.1+ */
-		background: -o-linear-gradient(top,  rgba(73,192,240,1) 0%,rgba(34,132,170,1) 100%); /* Opera 11.10+ */
-		background: -ms-linear-gradient(top,  rgba(73,192,240,1) 0%,rgba(34,132,170,1) 100%); /* IE10+ */
-		background: linear-gradient(to bottom,  rgba(73,192,240,1) 0%,rgba(34,132,170,1) 100%); /* W3C */
-		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#49c0f0', endColorstr='#2284aa',GradientType=0 ); /* IE6-9 */
+	    max-height: 67px;
+	    background: rgb(72, 176, 226);/*11-18-15-turash*/
 	}
 }
 
@@ -20,14 +13,7 @@
 
 	  header{  /*25-04-15*/
 	
-		background: rgb(73,192,240); /* Old browsers */
-		background: -moz-linear-gradient(top,  rgba(73,192,240,1) 0%, rgba(34,132,170,1) 100%); /* FF3.6+ */
-		background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(73,192,240,1)), color-stop(100%,rgba(34,132,170,1))); /* Chrome,Safari4+ */
-		background: -webkit-linear-gradient(top,  rgba(73,192,240,1) 0%,rgba(34,132,170,1) 100%); /* Chrome10+,Safari5.1+ */
-		background: -o-linear-gradient(top,  rgba(73,192,240,1) 0%,rgba(34,132,170,1) 100%); /* Opera 11.10+ */
-		background: -ms-linear-gradient(top,  rgba(73,192,240,1) 0%,rgba(34,132,170,1) 100%); /* IE10+ */
-		background: linear-gradient(to bottom,  rgba(73,192,240,1) 0%,rgba(34,132,170,1) 100%); /* W3C */
-		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#49c0f0', endColorstr='#2284aa',GradientType=0 ); /* IE6-9 */
+		background: rgb(72, 176, 226);  /*11-18-15-turash*/
 		padding-top: .2em;
 		min-height:86px;  /*05-10-15-Turash*/
 		max-height: 100px; /*07-01-15*/ 

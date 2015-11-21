@@ -170,6 +170,7 @@
     <script src="{{asset('js/Chart.min.js')}}"></script>
     <script src="{{asset('js/script.js')}}"></script>
     <script src="{{asset('js/cm-xs-sidebars.js')}}"></script>
+    <script src="js/smoothscroll.js"></script>
     <script>
     
       var navItem = $('.navbar-nav>li:nth-child(5)>a'); 
@@ -234,6 +235,8 @@
       var ctx = document.getElementById("result-chart").getContext("2d");
       var myNewChart = new Chart(ctx).Doughnut(data, {
           animateScale: true,
+          segmentStrokeWidth : 4,
+          segmentStrokeColor : "#2c3a49"
       });
       var data_02 = [
                 {
@@ -315,6 +318,15 @@
       $('div.post-area').attr('data-tagflag', '1'); /*Eve-26-May-Ehsan*/
       
       $('div.wrapper div#myTabContent div#commonroom div.checkbox').removeClass('hiddenpostpart'); //16-11-Ehsan
+
+      /*11-19-15-turash*/
+      $("[data-toggle=popover]").popover({
+        html: true, 
+        content: function() {
+          return $('#popover-content').html();
+        }
+      });
+      /*end-11-19-15-turash*/
 
     </script>
 

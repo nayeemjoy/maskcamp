@@ -7,11 +7,11 @@
 
       <div class="button-div">
           <div class="btn-group feeling-div">
-              <button type="button" class="btn btn-primary dropdown-toggle button-class btn-modified" 
+              <button type="button" class="btn btn-primary dropdown-toggle button-class btn-modified btn-blue" 
                       data-feeltext="none" data-feelid="1" 
                       data-toggle="dropdown" aria-expanded="false"><!-- 19-May-Ehsan -->
                   Feeling <span class="caret"></span>
-              </button><!--11/07/15-turash-->
+              </button><!--11-19-15-turash-->
               <ul class="dropdown-menu option-class" role="menu"><!--10-04-15-->
                   @foreach($data['feelings'] as $feeling)
                   	<li data-feelid="{{$feeling->id}}"><a href="#">{{$feeling->name}}</a></li><!-- 19-May-2015 -->

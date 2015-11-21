@@ -1,28 +1,12 @@
 header{
 
-	background: rgb(73,192,240); /* Old browsers */
-	background: -moz-linear-gradient(top,  rgba(73,192,240,1) 0%, rgba(34,132,170,1) 100%); /* FF3.6+ */
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(73,192,240,1)), color-stop(100%,rgba(34,132,170,1))); /* Chrome,Safari4+ */
-	background: -webkit-linear-gradient(top,  rgba(73,192,240,1) 0%,rgba(34,132,170,1) 100%); /* Chrome10+,Safari5.1+ */
-	background: -o-linear-gradient(top,  rgba(73,192,240,1) 0%,rgba(34,132,170,1) 100%); /* Opera 11.10+ */
-	background: -ms-linear-gradient(top,  rgba(73,192,240,1) 0%,rgba(34,132,170,1) 100%); /* IE10+ */
-	background: linear-gradient(to bottom,  rgba(73,192,240,1) 0%,rgba(34,132,170,1) 100%); /* W3C */
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#49c0f0', endColorstr='#2284aa',GradientType=0 ); /* IE6-9 */
+	background: rgb(99, 182, 219);  /*11-18-15-turash*/
 	padding-top: 2.3em;
 }
 
 @media(max-width:767px){
 
   header{
-
-	background: rgb(73,192,240); /* Old browsers */
-	background: -moz-linear-gradient(top,  rgba(73,192,240,1) 0%, rgba(34,132,170,1) 100%); /* FF3.6+ */
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(73,192,240,1)), color-stop(100%,rgba(34,132,170,1))); /* Chrome,Safari4+ */
-	background: -webkit-linear-gradient(top,  rgba(73,192,240,1) 0%,rgba(34,132,170,1) 100%); /* Chrome10+,Safari5.1+ */
-	background: -o-linear-gradient(top,  rgba(73,192,240,1) 0%,rgba(34,132,170,1) 100%); /* Opera 11.10+ */
-	background: -ms-linear-gradient(top,  rgba(73,192,240,1) 0%,rgba(34,132,170,1) 100%); /* IE10+ */
-	background: linear-gradient(to bottom,  rgba(73,192,240,1) 0%,rgba(34,132,170,1) 100%); /* W3C */
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#49c0f0', endColorstr='#2284aa',GradientType=0 ); /* IE6-9 */
 	padding-top: 1.1em;
   }
 
@@ -136,7 +120,7 @@ header{
 
 .section-01{
 
-	background: #2c3a49;
+	background: rgba(51, 131, 183, 0.63) url(../img/stripBG.png); /*11-18-15-turash*/
 	/* E */
 	overflow-y: auto;
 	position: fixed;
@@ -152,7 +136,7 @@ header{
 
 .section-03{
 
-	background: #2c3a49;
+	background: rgba(51, 131, 183, 0.63) url(../img/stripBG.png); /*11-18-15-turash*/
 	/* E */
 	position: fixed;
 	overflow: hidden; /*4/11/2015*/ 
@@ -448,8 +432,8 @@ p.question::first-letter {
 
 .post { /*5-7-Ehsan*/
 
-	background: #ebeced;
-	margin-bottom: 12px;
+	background: #FFFFFF;/*11-18-15-turash*/
+	margin-bottom: 8px;
 }
 
 .post-area{
@@ -777,7 +761,7 @@ div.cm-row-last {
 
    .btn-follow,.btn-unfollow,.btn-confession{
 
-	padding: 0px 0px;
+	padding: 1px 0px;   /*11-19-15-turash*/
 	position: relative;
 	left: -40%;
     }
@@ -791,27 +775,13 @@ div.cm-row-last {
 	margin-top: 0px;
 	padding: 8px;
 	border-radius: 1px;
-	background: rgb(99,182,219); /* Old browsers */
-	background: -moz-linear-gradient(top,  rgba(99,182,219,1) 0%, rgba(48,157,207,1) 100%); /* FF3.6+ */
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(99,182,219,1)), color-stop(100%,rgba(48,157,207,1))); /* Chrome,Safari4+ */
-	background: -webkit-linear-gradient(top,  rgba(99,182,219,1) 0%,rgba(48,157,207,1) 100%); /* Chrome10+,Safari5.1+ */
-	background: -o-linear-gradient(top,  rgba(99,182,219,1) 0%,rgba(48,157,207,1) 100%); /* Opera 11.10+ */
-	background: -ms-linear-gradient(top,  rgba(99,182,219,1) 0%,rgba(48,157,207,1) 100%); /* IE10+ */
-	background: linear-gradient(to bottom,  rgba(99,182,219,1) 0%,rgba(48,157,207,1) 100%); /* W3C */
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#63b6db', endColorstr='#309dcf',GradientType=0 ); /* IE6-9 */
+	background: rgb(72, 176, 226);/*11-18-15-turash*/
 	font-weight: 600;
 }
 
 .followed{
 
-	background: rgb(117,173,57); /* Old browsers */
-	background: -moz-linear-gradient(top,  rgba(117,173,57,1) 0%, rgba(67,137,39,1) 100%); /* FF3.6+ */
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(117,173,57,1)), color-stop(100%,rgba(67,137,39,1))); /* Chrome,Safari4+ */
-	background: -webkit-linear-gradient(top,  rgba(117,173,57,1) 0%,rgba(67,137,39,1) 100%); /* Chrome10+,Safari5.1+ */
-	background: -o-linear-gradient(top,  rgba(117,173,57,1) 0%,rgba(67,137,39,1) 100%); /* Opera 11.10+ */
-	background: -ms-linear-gradient(top,  rgba(117,173,57,1) 0%,rgba(67,137,39,1) 100%); /* IE10+ */
-	background: linear-gradient(to bottom,  rgba(117,173,57,1) 0%,rgba(67,137,39,1) 100%); /* W3C */
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#75ad39', endColorstr='#438927',GradientType=0 ); /* IE6-9 */
+	background: rgb(117,173,57); /*11-18-15-turash*/
 	color: #fff;
 }
 
@@ -1298,13 +1268,10 @@ body.modal-open {
 
 /*11/8/15-turash*/
 .post-display-section{  /*05-10-15*/
-    background: rgb(255, 253, 250); /*07-07-15-turash  8-7-Turash*/
+    background: rgb(255, 255, 255);  /*11-19-15-turash*/
     padding:1em;
     border: 1px solid rgb(220, 214, 214);      
     border-radius: 1px;
-    /*-moz-box-shadow: 0px 0px 5px #E4DEDE;;
-    -webkit-box-shadow: 0px 0px 5px #E4DEDE;
-    box-shadow: 0px 0px 5px #E4DEDE;*/
     margin-bottom: 10px;
     word-wrap: break-word;
     margin-left: 1px;
@@ -1466,27 +1433,26 @@ ul.notification-menu>li a:visited{
 .btn-notification{
 
 	border-radius: 50%;
-	background: rgb(51, 160, 199);
+	background: rgb(79, 102, 122); /*11-18-15-turash*/
 	border-color: transparent;
 }
 
-.user-img-post{  /*05-23-15 5-7-Ehsan*/ 
-    
+.user-img-post{  
     position: relative;
     top: -5px;
     border-radius: 50%;
-    background-color: rgba(255, 240, 219, 0.59);
-    border: 1px solid rgba(32, 30, 30, 0.11);
+    background-color: rgb(255, 253, 250);
+    border: 1px solid #dddddd;
 }
 
 .rsb-day {  /*05-25-15*/
 
-	background: rgb(245, 241, 231);
+	background: rgb(255, 253, 250);  /*11-18-15-turash*/
 	padding: .5em;
 	border: 1px solid rgb(54, 78, 93);
 	border-radius: 1px;
 	margin-top: -10px;
-        margin-bottom: 10px;
+    margin-bottom: 10px;
 }
 
 .view-more{
@@ -1889,8 +1855,8 @@ the modifications in all pages**/
 
 @media(max-width:767px){
 
+	/*11-18-15-turash*/
 	.mobile-display-header{
-
 	    color: white;
 		text-align: center;
 		top: 100px;
@@ -1898,16 +1864,16 @@ the modifications in all pages**/
 		padding: .3em;
 		border-top-left-radius: 0;
 		border-top-right-radius: 0;
-		border-bottom-left-radius: 4px;
-		border-bottom-right-radius: 4px;
+		border-bottom-left-radius: 1px;
+		border-bottom-right-radius: 1px;
 		z-index: 999;
 	}
 
 	.mobile-display-header-fr,.mobile-display-header-cr,.mobile-display-header-p{
-
-		background:#247A9C;
-		border: 1px solid rgb(53, 118, 161);
-	}
+       background: #419FCC;
+       border: 0px solid rgb(53, 118, 161);
+ 	}
+	/*end-11-18-15-turash*/
 
 	.post-area,.profile-mobile{
 
@@ -1949,19 +1915,20 @@ the modifications in all pages**/
 /*07-07-15-turash*/
 /*poll-area*/
 
+/*11-18-15-turash*/
 .poll-form{
-  background: rgb(245, 241, 231);
-  padding: .5em;
-  max-width: 90%;
-  margin: 20px auto 0;
-  border-radius: 4px;
+    background: rgb(255, 253, 250);
+    padding: .5em;
+    max-width: 90%;
+    margin: 20px auto 0;
+    border-radius: 1px;
 }
 
 /*like-dislike-comment-section-in-post*/
-@media(min-width:768px){
+@media(min-width:1px){   /*11-18-15-turash*/
 
 	.like-dislike-comment{
-	  background: rgb(255, 249, 240);
+	  background: rgb(255, 255, 255);  /*11-19-15-turash*/
 	  border-radius: 1px;
 	  border: 1px solid rgb(220, 214, 214);
 	  text-align: center; /*17-11-Ehsan*/
@@ -2002,7 +1969,7 @@ the modifications in all pages**/
 }
 
 .mc-post-area-style{
-	background: rgba(245, 245, 245, 0.65);
+	background: rgba(253, 252, 252, 0.65); /*11-18-15-turash*/
 	border-radius: 1px;
 	border: 1px solid rgb(227, 224, 224);
 	margin-left: 0px;
@@ -2104,3 +2071,40 @@ the modifications in all pages**/
 		width:100%;
 	}
 }
+
+/*11-18-15-turash*/
+.rsb-day>ul {
+    text-align: center;
+}
+
+.btn-blue{
+	background: #49A3E4;
+    border-color: #49A3E4;
+    color:white;
+}
+
+/*11-19-15-turash*/
+.user-name-area{
+	text-align: center;
+    margin-top: 30px;
+}
+
+.popover{
+	border-radius: 1px;
+    background: white;
+    z-index:10000;
+    position:fixed;
+}
+
+.post-area>textarea:focus,#user-name:focus{
+    border-color: rgb(165, 166, 169);
+}
+
+.icon-btn{
+	padding-top: 0;
+}
+
+.popover-content{
+	padding-bottom:0;
+}
+/*end-11-19-15-turash*/

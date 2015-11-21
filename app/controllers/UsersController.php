@@ -833,7 +833,8 @@
 				// Available Pictures
 					$data['pictures'] = Picture::whereSex($user->sex)->orWhere('sex','none')->get();
 				// 
-
+				$url = Picture::find($user->picture); /*21-11-Ehsan*/
+				$data['self'] = $url; /*21-11-Ehsan*/
 
 
 				$confession = Confession::whereUserId($user->id)->first();

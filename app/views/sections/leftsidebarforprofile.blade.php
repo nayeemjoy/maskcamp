@@ -63,6 +63,46 @@
   </div> -->
   <!-- ************************END***************5-7-Ehsan -->
 
+  <!--11-19-15-turash-->
+  
+  <div class="row">
+    <div class="user-name-area">
+      <ul class="list-unstyled">
+        <li>
+          <!--<a data-placement="bottom" data-toggle="popover" data-title="Login" data-container="body" type="button" data-html="true" href="#" id="login">Login</a>-->
+          <!-- START-21-11-Ehsan -->
+          @if(!$data['user']['username'])
+          <button class="btn btn-blue btn-primary btn-modified icon-btn" data-placement="bottom" data-toggle="popover"data-container="body" type="button" data-html="true"><span class="page-icon glyphicon glyphicon-plus" aria-hidden="true"></span><span class="user-name-pop-btn">Add Name</span></button>
+          @else
+          <button class="btn btn-blue btn-primary btn-modified icon-btn" data-placement="bottom" data-toggle="popover"data-container="body" type="button" data-html="true"><span class="page-icon glyphicon glyphicon-pencil" aria-hidden="true"></span><span class="user-name-pop-btn">Edit Name</span></button>
+          @endif
+        </li>
+        <div id="popover-content" class="hide">
+            <ul class="list-inline">
+              <li>
+              @if(!$data['user']['username'])
+              <input type="text" class="form-control" id="user-name" placeholder="Name">
+              @else
+              <input type="text" class="form-control" id="user-name" placeholder="{{$data['user']['username']}}">
+              @endif
+              </li>
+              <li>
+              @if(!$data['user']['username'])
+              <button class="btn btn-blue btn-primary btn-modified" id="name-add">Add!</button>
+              @else
+              <button class="btn btn-blue btn-primary btn-modified" id="name-add">Edit!</button>
+              @endif
+              </li>
+            </ul>
+            <span></span>
+            <!-- END-21-11-Ehsan -->           
+        </div>
+      </ul>
+    </div>
+  </div>
+
+  <!--11-19-15-turash-->
+  
   <div class="row">
     <div class="col-lg-12"><!--05-23-15-turash-->
       <div class="like-dislike">

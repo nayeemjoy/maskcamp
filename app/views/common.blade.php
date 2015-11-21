@@ -176,6 +176,7 @@
     <script src="js/Chart.min.js"></script>
     <script src="js/script.js"></script>
     <script src="js/cm-xs-sidebars.js"></script>
+    <script src="js/smoothscroll.js"></script>
     <script type="text/javascript">
         $(document).ready(function(){
         
@@ -193,7 +194,7 @@
 
           else if(w<768){
             $('.post-area>textarea').attr('rows','3');
-            navItem.css({ 'border-bottom': '12px solid #247A9C'
+            navItem.css({ 'border-bottom': '12px solid #419FCC'  /*11-18-15-turash*/
             }); 
           }
           /*end of 01-07-15*/
