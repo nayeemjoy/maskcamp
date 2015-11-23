@@ -24,6 +24,9 @@
           @elseif($data['page'] == "campus")
           <span class="page-icon glyphicon glyphicon-education" aria-hidden="true"></span> <!-- 5-7-Ehsan -->
           Campus
+          @elseif($data['page'] == "carnival")
+          <span class="page-icon glyphicon glyphicon-education" aria-hidden="true"></span> <!-- 5-7-Ehsan -->
+          Carnival
           @endif
         </div>
       </div>  

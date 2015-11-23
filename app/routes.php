@@ -31,6 +31,8 @@ Route::group(array('before' => 'auth.redirect'), function()
 	Route::get('/commonroom','UsersController@common');
 	Route::get('/campus','UsersController@campus');
 	Route::get('/profile','UsersController@profile');
+	Route::get('/carnival','UsersController@carnival');
+	
 	Route::get('/profile/{id}','UsersController@getProfile');
 	Route::post('/giveanswer','UsersController@give_answer');
 	Route::get('/viewnotification/{id}','UsersController@viewNotification');

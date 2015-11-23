@@ -980,7 +980,159 @@
 			->with('followers',$ratio_of_like_dislike_of_my_followers_posts)->with('followings', $ratio_of_like_dislike_of_my_followings_posts)
 			->with('my_posts', $ratio_of_like_dislike_of_my_posts);
 		}
+		// CSE CARNIVAL Page
+		public function carnival(){
+			//return 'We Are Working';
+			//Changed
+			
+			$data['date'] = $this->getBaseDateTime();
+			
+			/*19-May-2015 Ehsan*/
+			$user = User::find(Auth::user()->id);
+			$url = Picture::find($user->picture);
+			$data['self'] = $url;
+			/*!!!!19-May-2015 Ehsan*/
+			// Everyday Question Generation
+			$data['question'] = null;
+			$data['prev_question'] = null;
+			$question = Question::orderBy('id', 'desc')->first();
+			$prev_question = Question::orderBy('id', 'desc')->skip(1)->first();
+			if($question){
+				$data['question'] = $question;
+				$data['options_of_question'] = QuestionOption::whereQuestionId($question->id)->get();
+				//$get_count_of_the_answers = DB::table('users_answers')->select(DB::raw('option_number,count(*) as count'))->join('question_options','users_answers.option_id', '=', 'question_options.id')->whereQuestionId($question->id)->groupBy('option_id')->groupBy('option_number')->orderBy('option_number')->get();
+				$data['answered'] = UsersAnswer::whereUserId(Auth::user()->id)->whereQuestionId($question->id)->first();
+			}
+			if($prev_question) {
+				$data['prev_question'] = $prev_question;
+				$options_of_question = QuestionOption::whereQuestionId($prev_question->id)->get();
+				$total_answer = 0;
+				foreach($options_of_question as $key) {
+					$current_answer = DB::table('users_answers')->select(DB::raw('count(*) as count'))->whereOptionId($key->id)->first()->count;
+					$total_answer += $current_answer;
+					$answers_count[$key->option_number] = array(
+						'option_details' => $key->option_details,
+						'total_answer' => $current_answer
 
+					);
+				}
+				try {
+					foreach ($options_of_question as $key) {
+						$cur = $answers_count[$key->option_number]['total_answer'] * 1.00;
+						$percentage = ($cur/$total_answer) * 100.0;
+						$answers_count[$key->option_number]['total_answer'] = number_format((float)$percentage, 2, '.', '');
+					}	
+				} catch (Exception $e) {
+					$answers_count[1]['total_answer'] = 33;
+					$answers_count[2]['total_answer'] = 33;
+					$answers_count[3]['total_answer'] = 33;
+				}
+				$data['total_votes'] = $total_answer;
+				$data['answers'] = $answers_count;
+			}
+			// ENd of Question Related Code
+			// Top And Flop Post Generation
+			$posts = Post::select('posts.*')->join('users', 'users.id', '=', 'posts.user_id')->where('users.disable', '0')->whereType('3')
+			->orderBy('posts.id', 'desc')->take(30)->lists('id');
+
+
+			$top_post = DB::table('likes')->select(DB::raw('count(*) as like_count, post_id'))->whereIn('post_id',$posts)->orderBy('like_count','desc')->groupBy('post_id')->first();
+
+			// return json_encode($top_post);
+			$flop_post = DB::table('dislikes')->select(DB::raw('count(*) as dislike_count, post_id'))->whereIn('post_id', $posts)->orderBy('dislike_count','desc')->groupBy('post_id')->first();
+			
+
+			$data['flop_post'] = null;
+			$data['top_post'] = null;
+			if($top_post){
+				$post = Post::whereId($top_post->post_id)->first();
+				/*19-May-2015 Ehsan*/
+				$user = User::find($post->user_id);
+				$url = Picture::find($user->picture);
+				$url = $url->url;
+				/*!!!!19-May-2015 Ehsan*/
+				$text = htmlentities($post->post);
+				/*Eve-26-May-Ehsan*/
+				
+				/*!!!!Eve-26-May-Ehsan*/
+				$text = preg_replace('@(https?://([-\w\.]+)+(:\d+)?(/([\w/_\.]*(\?\S+)?)?)?)@','<a target="_blank" href="$1">$1</a>', $text);
+	          		
+				$text = preg_replace('/#([a-zA-Z0-9\x{0980}-\x{09FF}_])+/u','<a href="#" class="tags">$0</a>',$text);
+				
+				$text = nl2br($text);
+				$text = Emojione::shortnameToImage($text);
+				$now = Carbon::parse($post->created_at);
+				$data['top_post'] = array(
+						'id' => $post->id,
+						'post' => $text,
+						'user_id' => $post->user_id,
+						'img' => asset($url),///*19-May-2015 Ehsan*/
+						'like' => Like::wherePostId($post->id)->get()->count(),
+						'dislike' => Dislike::wherePostId($post->id)->get()->count(), 
+						'liked' => Like::wherePostId($post->id)->whereUserId(Auth::user()->id)->get()->count(),
+						'disliked' => Dislike::wherePostId($post->id)->whereUserId(Auth::user()->id)->get()->count(),
+						'comment' => Comment::wherePostId($post->id)->get()->count(),
+						'ago' => $now->diffForHumans()
+					);
+			}
+			else
+			{
+				$data['top_post'] = null;
+			}
+			if($flop_post){
+				$post = Post::whereId($flop_post->post_id)->first();
+				/*19-May-2015 Ehsan*/
+				$user = User::find($post->user_id);
+				$url = Picture::find($user->picture);
+				$url = $url->url;
+				/*!!!!19-May-2015 Ehsan*/
+				$text = htmlentities($post->post);
+				/*Eve-26-May-Ehsan*/
+				
+				/*!!!!Eve-26-May-Ehsan*/
+				$text = preg_replace('@(https?://([-\w\.]+)+(:\d+)?(/([\w/_\.]*(\?\S+)?)?)?)@','<a target="_blank" href="$1">$1</a>', $text);
+	          	
+					$text = preg_replace('/#([a-zA-Z0-9\x{0980}-\x{09FF}_])+/u','<a href="#" class="tags">$0</a>',$text);
+				
+				$text = nl2br($text);
+				$text = Emojione::shortnameToImage($text);
+	          		$now = Carbon::parse($post->created_at);
+				$data['flop_post'] = array(
+						'id' => $post->id,
+						'post' => $text,
+						'user_id' => $post->user_id,
+						'img' => asset($url),///*19-May-2015 Ehsan*/
+						'like' => Like::wherePostId($post->id)->get()->count(),
+						'dislike' => Dislike::wherePostId($post->id)->get()->count(), 
+						'liked' => Like::wherePostId($post->id)->whereUserId(Auth::user()->id)->get()->count(),
+						'disliked' => Dislike::wherePostId($post->id)->whereUserId(Auth::user()->id)->get()->count(),
+						'comment' => Comment::wherePostId($post->id)->get()->count(),
+						'ago' => $now->diffForHumans()
+					);
+			}
+			else
+			{
+				$data['flop_post'] = null;
+			}
+			// Top And Flop Post Generation end
+			// Get All Available Reports and Feelings
+			$data['feelings'] = Feeling::get();
+			$data['reports'] = Report::get();
+			// 
+			$data['notifications'] = $this->getNotification();
+			//Get Current Trends
+			$now = Carbon::now();
+			$before_12hours = Carbon::now()->subHours(12);
+			$data['tags'] = DB::table('hash_tagged_posts')->select('tag_id','tag',(DB::raw('count(*) as  count')))
+			->join('hashtags', 'hashtags.id', '=', 'hash_tagged_posts.tag_id')->whereIn('hash_tagged_posts.post_id', function($query){
+				$query->select('id')->from('posts')->whereType('3');
+			})->whereBetween('hash_tagged_posts.created_at', array($before_12hours,$now))->groupBy(['tag_id','tag'])->orderBy('count','desc')->take(3)->get();
+			
+			//Get Current Trends End
+			$data['page'] = "carnival";		
+			return View::make('carnival')->with('data', $data);
+		}
+		// 
 		public function give_answer(){
 			
 			try {
