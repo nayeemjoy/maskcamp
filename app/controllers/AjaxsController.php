@@ -289,6 +289,10 @@
 
 					$posts = Post::join('users', 'users.id', '=', 'posts.user_id')->select('posts.*')->where('posts.created_at', '<=' ,$time)->where('users.disable', '0')->whereType('1')->whereHideName('0')->whereNotNull('users.username')->where('posts.user_id', Session::get('id'))->orderBy('posts.id', 'desc')->skip(Input::get('off'))->take(10)->get();/*27-May-Joy*/
 				}
+				elseif($type == 8){ //Carnival
+					$posts = Post::join('users', 'users.id', '=', 'posts.user_id')->select('posts.*')->where('users.disable', '0')->whereType('3')->where('posts.created_at', '<=' ,$time)->orderBy('posts.id', 'desc')->skip(Input::get('off'))->take(10)->get();/*27-May-Joy*/
+
+				}
 				$i = 0;
 				foreach ($posts as $post) {
 					$now = Carbon::parse($post->created_at);
@@ -837,6 +841,23 @@
 					$url = Picture::find($user->picture);
 					$url = $url->url;
 	          			$text = htmlentities($post->post);
+	          			// Youtube Video Searching
+	          			$pos = strpos($text ,'watch?v=');
+						if ($pos != 0) {
+							$pos = $pos + 8;
+							$str = substr($text, $pos, 11);
+						# code...
+						}
+						else{
+							$str = null;
+						}
+						// 
+						$name = null;
+						if(($post->type == 1 || $post->type == 3) && !$post->hide_name){
+							$user = User::find($post->user_id);
+							$name = $user->username;
+						}
+
 					$text = preg_replace('/#([a-zA-Z0-9\x{0980}-\x{09FF}_])+/u','<a href="" class="tags">$0</a>',$text);
 					/* Eve-26-May-Ehsan */
 		          		$text = preg_replace('#((https?|ftp)://(\S*?\.\S*?))([\s)\[\]{},;"\':<]|\.\s|$)#i','<a target="_blank" href="$1">$1</a>', $text);
@@ -858,6 +879,8 @@
 						'disliked' => Dislike::wherePostId($post->id)->whereUserId(Auth::user()->id)->get()->count(),
 						'comment' => Comment::wherePostId($post->id)->get()->count(),
 						'feeling' => $feeling,
+						'vidsrc' => $str, //9-2-Ehsan
+						'name' => $name,
 						'ago' => $now->diffForHumans()
 					);
 			}
@@ -882,6 +905,12 @@
 					$posts = DB::table('hash_tagged_posts')->select('post_id as id','tag')->join('hashtags', 'hashtags.id', '=', 'hash_tagged_posts.tag_id')->whereIn('hash_tagged_posts.post_id',function($query){
 							$query->select('posts.id')->from('posts')->whereType('2')->whereCampusId(Session::get('campus'));
 					})->where('tag', 'like', '%'. $tag.'%')->orderBy('post_id','desc')->get();
+				}
+				elseif($type == 3)
+				{
+					$posts = DB::table('hash_tagged_posts')->select('post_id as id','tag')->join('hashtags', 'hashtags.id', '=', 'hash_tagged_posts.tag_id')->whereIn('hash_tagged_posts.post_id',function($query){
+							$query->select('posts.id')->from('posts')->whereType('3');
+					})->where('tag', 'like','%'. $tag.'%')->orderBy('post_id','desc')->get();	
 				}
 				$data['posts'] = $this->postProcess($posts);
 				//echo 'ok';
@@ -913,6 +942,14 @@
 						$query->select('posts.id')->from('posts')->whereType('2')->whereCampusId(Session::get('campus'));
 					})->where('hashtags.tag', 'like','%'. $tag.'%')->groupBy(['hashtags.id', 'hashtags.tag'])->get(['hashtags.id','hashtags.tag']);
 				
+				}
+				if($type == 3)
+				{
+					$data['tags'] = HashTag::join('hash_tagged_posts', 'hashtags.id', '=', 'hash_tagged_posts.tag_id')
+					->whereIn('hash_tagged_posts.post_id',function($query){
+							$query->select('posts.id')->from('posts')->whereType('3');
+					})->where('hashtags.tag', 'like','%'. $tag.'%')->groupBy(['hashtags.id', 'hashtags.tag'])->get(['hashtags.id','hashtags.tag']);
+					
 				}
 			}catch (Exception $e) {
 				
