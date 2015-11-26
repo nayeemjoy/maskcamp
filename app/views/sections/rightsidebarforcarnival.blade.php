@@ -1,12 +1,8 @@
 <div class="section-03 col-xs-12 hidden-xs">
             <!-- E -->
-  <!-- *****START**********5-7-Ehsan -->
-  @if($data['answered'])
+  
   <div class="top-flop-fixed" data-answered="1">
-  @else
-  <div class="top-flop-fixed" data-answered="0">
-  @endif
-  <!-- ********END*********5-7-Ehsan -->
+
     <div class="row visible-xs">
       <div class="col-xs-12">
         <span class="visible-xs sidebar-x-button glyphicon glyphicon-remove-sign pull-left" id="cm-right-sidebar-x"aria-hidden="true"></span>
@@ -245,53 +241,6 @@
     <div class="below-fotd"></div><!--05-25-15-turash-->
     @endif
   </div>
-  
-  <!-- **********START***************5-7-Ehsan -->
-  @if($data['answered'])
-
-  @else
-    <div class="poll-fixed">
-      @if($data['question'])
-      <form action="{{URL::to('giveanswer')}}" method="POST" class="poll-form"> <!-- 8-7-Turash -->
-
-          <div class="poll-section poll-submit-section"><!--05-10-15-->
-            <div class="col-lg-12">
-              <div class="poll"><span class="page-icon glyphicon glyphicon-stats" aria-hidden="true"></span>Poll</div> 
-            </div>       
-          </div>
-
-          <div class="row poll-question">
-            <div class="col-lg-1"></div>
-            <div class="col-lg-10">  
-                 <p class="question">Q.  {{$data['question']->question}}</p> 
-                   @foreach($data['options_of_question'] as $option)
-                   <p class="opinion">
-                      <input type="radio" name="optid" id="" value="{{$option->id}}">
-                      {{$option->option_details}}
-                   </p>
-                   @endforeach
-            </div> 
-            <div class="col-lg-1"></div>
-          </div>
-
-          <div class="row view-more-section">
-            
-            <div class="col-xs-12">
-              
-            		<!-- <a class="btn btn-success poll-submit" href="#">Answer Taken</a> --><!--05-10-15-->
-              	
-              		
-              		<button class="btn btn-rsb poll-submit btn-modified">Submit</button><!--05-10-15-->
-              	
-            </div>
-            
-          </div>
-
-      </form>
-      @endif
-    </div>
-  @endif
-  <!-- ********END******************5-7-Ehsan -->
 
 
 </div> <!-- .section-03-full-scroll -->

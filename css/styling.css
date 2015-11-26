@@ -407,20 +407,9 @@ p.question::first-letter {
 @media(max-width:767px){
       
 	.section-02{
-
-		background: rgb(249,252,247); /* Old browsers */
-		background: -moz-linear-gradient(top,  rgba(249,252,247,1) 0%, rgba(245,249,240,1) 100%); /* FF3.6+ */
-		background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(249,252,247,1)), color-stop(100%,rgba(245,249,240,1))); /* Chrome,Safari4+ */
-		background: -webkit-linear-gradient(top,  rgba(249,252,247,1) 0%,rgba(245,249,240,1) 100%); /* Chrome10+,Safari5.1+ */
-		background: -o-linear-gradient(top,  rgba(249,252,247,1) 0%,rgba(245,249,240,1) 100%); /* Opera 11.10+ */
-		background: -ms-linear-gradient(top,  rgba(249,252,247,1) 0%,rgba(245,249,240,1) 100%); /* IE10+ */
-		background: linear-gradient(to bottom,  rgba(249,252,247,1) 0%,rgba(245,249,240,1) 100%); /* W3C */
-		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f9fcf7', endColorstr='#f5f9f0',GradientType=0 ); /* IE6-9 */
+		background: #ffffff;  /*11-21-15-turash*/
 		position:relative;
-		top:18px;  /*01-07-15*/
-		-webkit-box-shadow: inset 0px 0px 18px #838688;
-		-moz-box-shadow: inset 0px 0px 18px #838688;
-		box-shadow: inset 0px 0px 18px #838688;
+		top:18px; 
 	}
 }
 
@@ -827,43 +816,44 @@ a.item {
   color: #ECE6E6;
 }*/
 
+/*11-21-15-turash*/
 .trends{
-
-	max-width:93%;
-	margin:0px auto 15px;
-	background: rgb(240, 248, 233);
-	padding-top: 1em;
-	padding-bottom: .6em;
-	border-radius: 1px;
-       -moz-box-shadow: 0px 0px 5px #333133;
-       -webkit-box-shadow: 0px 0px 5px #333133;
-       box-shadow: 0px 0px 2px #DCDADC;
+	max-width: 93%;
+    margin: 0px auto 15px;
+    background: rgb(255, 255, 255);
+    padding-top: 1em;
+    padding-bottom: .6em;
+    border-radius: 1px;   
+    border: 1px solid #E3E0E0;
 }
 
+/*11-21-15-turash*/
 .trends-header{
 
-    max-width: 500px;
-    margin-left: auto;
-    margin-right: auto;
-text-align: center;
-color:#fff;
-font-size: 1.1em;
-margin-top: 5px; 
-font-family: 'Source Sans Pro', sans-serif;
-margin-bottom: 15px;
-padding: 5px;
-    border-radius: 1px; 
-    background-color: rgb(53, 160, 203);
+	max-width: 500px;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+	color:#fff;
+	font-size: 1.1em;
+	margin-top: 5px;
+	font-family: 'Source Sans Pro', sans-serif;
+	margin-bottom: 15px;
+	padding: 5px 5px 7px 5px;
+	border-radius: 1px;
+	background-color: rgb(72, 176, 226);
+	text-transform: uppercase;
 }
 
+/*11-21-15-turash*/
 .trend-class{
-
-	color: rgb(110, 143, 95);
-	margin-bottom: 5px;	
-	font-size:1em;
-	background: rgb(224, 246, 217);
-	padding: .3em;
-	border-radius: 4px;
+    color: rgb(110, 143, 95);
+    margin-bottom: 5px;
+    font-size: 1em;
+    background: rgb(254, 253, 253);
+    padding: .3em;
+    border-radius: 1px;
+    border: 1px solid #DCD6D6;
 }
 
 .trends-link{
@@ -2108,3 +2098,13 @@ the modifications in all pages**/
 	padding-bottom:0;
 }
 /*end-11-19-15-turash*/
+
+/*17-11-Ehsan*/
+.tags {
+  color: rgb(141, 150, 247);
+  cursor: pointer; 
+}
+
+.notags:hover {
+	text-decoration: none;
+}
