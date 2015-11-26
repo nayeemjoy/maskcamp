@@ -161,7 +161,7 @@
 						$notification->created_at = Carbon::now();
 						$notification->updated_at = Carbon::now();
 						$notification->save();
-						if($post->type == 1 || $post->type == 2){
+						if(($post->type >= 1) && ($post->type <= 3)){ /*26-11-Ehsan*/
 							preg_match_all('/#([a-zA-Z0-9\x{0980}-\x{09FF}_])+/u', $post->post, $matches);
 							foreach ($matches[0] as $key) {
 								$tag = HashTag::whereTag($key)->first();
@@ -219,11 +219,20 @@
 						
 	          			/* !!!Eve-26-May-Ehsan */
 	          			$text = preg_replace('#((https?|ftp)://(\S*?\.\S*?))([\s)\[\]{},;"\':<]|\.\s|$)#i','<a target="_blank" href="$1">$1</a>', $text);
-	          			if($post->type == 1 || $post->type == 2){
+	          			if(($post->type >= 1) && ($post->type <= 3)){ /*26-11-Ehsan*/
 							$text = preg_replace('/#([a-zA-Z0-9\x{0980}-\x{09FF}_])+/u','<a class="tags">$0</a>',$text); //5-7-Ehsan
 						}
-							$text = nl2br($text);
+						$text = nl2br($text);
 						$text = Emojione::shortnameToImage($text);
+
+						/*Start-26-11-Ehsan*/
+						$name = null;
+						if( (($post->type == 1) && ($post->type == 3)) && !$post->hide_name ){ 
+							$user = User::find($post->user_id);
+							$name = $user->username;
+						}
+						/*End-26-11-Ehsan*/
+
 	          			$data = array(
 						'id' => $post->id,
 						'post' => $text,
@@ -238,6 +247,7 @@
 						'disliked' => Dislike::wherePostId($post->id)->whereUserId(Auth::user()->id)->get()->count(),
 						'comment' => Comment::wherePostId($post->id)->get()->count(),
 						'feeling' => $feeling,
+						'name' => $name,/*26-11-Ehsan*/
 						'vidsrc' => $str, //9-2-Ehsan
 						'ago' => $now->diffForHumans()
 					); 
@@ -343,10 +353,10 @@
 					
 		          		/*!!!!Eve-26-May-Ehsan*/
 					$text = preg_replace('#((https?|ftp)://(\S*?\.\S*?))([\s)\[\]{},;"\':<]|\.\s|$)#i','<a target="_blank" href="$1">$1</a>', $text);
-	          			if ($post->type == 1  || $post->type == 2) {
-							if($type >= 5){	/*$type == 3 || removed on Eve-26-May-Ehsan*/ //5-7-Ehsan
+	          			if ($post->type >= 1  && $post->type <= 3) { /*26-11-Ehsan*/
+							if($type >= 5 && $type <= 7){	/*//26-11-Ehsan*/ 
 				        	  	$text = preg_replace('/#([a-zA-Z0-9\x{0980}-\x{09FF}_])+/u','<a class="notags">$0</a>',$text); //17-11-Ehsan
-			          		}	else if($type < 4) { /*23-6-Ehsan*/
+			          		}	else if($type < 4 || $type == 8) { /*26-11-Ehsan*/
 				        	  	$text = preg_replace('/#([a-zA-Z0-9\x{0980}-\x{09FF}_])+/u','<a href="" class="tags">$0</a>',$text);
 			          		}
 		          		} 
@@ -354,7 +364,7 @@
 						$text = Emojione::shortnameToImage($text);
 
 						$name = null;
-						if(($type == 2 || $type == 7) && !$post->hide_name){
+						if(($type == 2 || $type >= 7) && !$post->hide_name){ /*26-11-Ehsan*/
 							$user = User::find($post->user_id);
 							$name = $user->username;
 						}

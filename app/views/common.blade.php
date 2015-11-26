@@ -64,7 +64,7 @@
             </div>
             
             <div class="btn-view-more-posts"> <!-- 5-7-Ehsan -->
-                <div class="view-more-posts" data-viewmoretype="2" data-lastpost="0"><img src="{{asset('img/379.GIF')}}"></div> <!-- 5-7-Ehsan -->
+                <div class="view-more-posts" data-viewmoretype="2" data-lastpost="0"><img src="{{asset('img/245.GIF')}}"></div> <!-- 5-7-Ehsan -->
             </div>
 
           </div> <!-- .wrapper -->

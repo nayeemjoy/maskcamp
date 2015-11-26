@@ -46,7 +46,7 @@
                     <div class="tab-pane fade in active" id="posts">                                             
                         @include('sections.createPost')
                         <div class="btn-view-more-posts">             
-                          <div class="view-more-posts" data-viewmoretype="4" data-lastpost="0"><img src="{{asset('img/379.GIF')}}"></div> <!-- 5-7-Ehsan -->
+                          <div class="view-more-posts" data-viewmoretype="4" data-lastpost="0"><img src="{{asset('img/245.GIF')}}"></div> <!-- 5-7-Ehsan -->
                         </div>
                         
                     </div>
@@ -54,7 +54,7 @@
                     <div class="tab-pane fade" id="commonroom"> <!-- 16-11-Ehsan -->
                         @include('sections.createPost')
                         <div class="btn-view-more-posts">             
-                          <div class="view-more-posts" data-viewmoretype="5" data-lastpost="0"><img src="{{asset('img/379.GIF')}}"></div> <!-- 5-7-Ehsan -->
+                          <div class="view-more-posts" data-viewmoretype="5" data-lastpost="0"><img src="{{asset('img/245.GIF')}}"></div> <!-- 5-7-Ehsan -->
                         </div>
 
                      </div>
@@ -62,7 +62,7 @@
                      <div class="tab-pane fade" id="campus">                     
                         @include('sections.createPost')
                         <div class="btn-view-more-posts"> 
-                          <div class="view-more-posts" data-viewmoretype="6" data-lastpost="0"><img src="{{asset('img/379.GIF')}}"></div> <!-- 5-7-Ehsan -->
+                          <div class="view-more-posts" data-viewmoretype="6" data-lastpost="0"><img src="{{asset('img/245.GIF')}}"></div> <!-- 5-7-Ehsan -->
                         </div>
                         
                     </div>

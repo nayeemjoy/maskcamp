@@ -276,6 +276,22 @@
           class: "col-lg-8 col-md-8 col-sm-7 col-xs-7 post-text" //5-7-Ehsan 
       }).appendTo(thePostDisplay);
 
+      /*START--26-11-Ehsan*/
+      console.log("*******************creatingpost with name::"+theReturned.name);
+      if (theReturned.name) {
+        
+        var theNameA = $('<a></a>', {
+            href: baseUrl+"/profile/"+theReturned.user_id
+        }).appendTo(theLg9Div);
+
+        var theNameP = $('<p></p>', {
+            class: "usernameP",
+            text: theReturned.name
+        }).appendTo(theNameA);
+
+      }
+      /*END--26-11-Ehsan*/
+
       /* Feeling and Time*/
 
       var postDetailsRow = $('<div></div>', {
@@ -1936,7 +1952,7 @@
           /*START-21-11-Ehsan*/
           viewMoreType = parseInt($this.attr('data-viewmoretype'));
 
-          if (viewMoreType == 7) {
+          if (viewMoreType >= 7) { /*26-11-Ehsan*/
             divToThrowBefore = $this.parent();
           } else {
             divToThrowAfter = $this.parent().prev();
@@ -1951,7 +1967,7 @@
       for(loopCount = 0; loopCount < loopLimit; loopCount++) {
           //console.log(loopCount);
           /*START-21-11-Ehsan*/
-          if (viewMoreType == 7) {
+          if (viewMoreType >= 7) { /*26-11-Ehsan*/
             var theRowOfPost = $("<div></div>", {
                 class: "row post-display-section"
             }).insertBefore(divToThrowBefore);
@@ -2486,7 +2502,7 @@
           
 
           if (caller == "viewmore") {
-            if (viewMoreType < 4) { //23-6-Ehsan
+            if ((viewMoreType < 4) || (viewMoreType == 8)) { //26-11-Ehsan
                 theRowOfPost.find('.tags').on('click', function(e){ //25-May
                     e.preventDefault(); /*Eve-28-May*/
                     getTagResultsByClick.call(this);
@@ -2511,7 +2527,7 @@
           theRowOfPost.addClass('hiddenpostpart'); //5-7-Ehsan
           console.log('adding class: hiddenpostpart');
           
-          if (viewMoreType != 7) divToThrowAfter = theRowOfPost; /*21-11-Ehsan*/
+          if (viewMoreType < 7) divToThrowAfter = theRowOfPost; /*26-11-Ehsan*/
 
           commenterSpan.trigger('click'); /*28-May*/
 
@@ -2520,7 +2536,7 @@
       if (caller == "viewmore") {
           /*Morn-28-May*/
           var theLastOff = parseInt($this.attr('data-lastpost'));/*5-7-Ehsan*/
-          $this.attr('data-lastpost', theLastOff+10);/*5-7-Ehsan*/
+          $this.attr('data-lastpost', theLastOff+loopLimit);/*26-11-Ehsan*/
           
           /*if (theReturned['length'] > 5) {  
               $this.attr('data-lastpost', theReturned['posts'][4].id);
@@ -2546,7 +2562,7 @@
 
     if ((viewMoreType >= 4) && (viewMoreType <= 6)) { //21-11-Ehsan
         listOfHiddenPosts = $this.closest('.tab-pane').find('div.post-display-section.hiddenpostpart');
-    } else if ((viewMoreType < 4) || (viewMoreType == 7)) { //21-11-Ehsan
+    } else if ((viewMoreType < 4) || (viewMoreType >= 7)) { //26-11-Ehsan
         listOfHiddenPosts = $('div.post-display-section.hiddenpostpart');      
     }
 
@@ -2612,8 +2628,19 @@
                       theWindow.scroll(function(){
                         loadPostsOnScrollToBottom.call(this);  
                       });
+                      /*Start-26-11-Ehsan*/
+                      if (($this.closest('.section-02').height()+$('header.navbar-fixed-top').height()) <= theWindow.height()) {
+                        loadPostsOnScrollToBottom.call(window);
+                      }
+                      //console.log(theWindow.height());
+                      /*End-26-11-Ehsan*/
                     }
-                    
+                    /*Start-26-11-Ehsan*/
+                    if (($this.closest('.section-02').height()+$('header.navbar-fixed-top').height()) <= theWindow.height()) {
+                      loadPostsOnScrollToBottom.call(window);
+                    }
+                    //console.log(theWindow.height());
+                    /*End-26-11-Ehsan*/
 
                     console.log('viewMorePosts::morePostsLoaded');
                 });/*27-May-Ehsan*/
@@ -3018,7 +3045,7 @@
       }).promise();
 
       ajRes.done( function( theReturned ) {        
-        console.log(theReturned);
+        //console.log(theReturned);
         if (theReturned){          
           console.log('Hashtag matches found through typing: '+theReturned);
           loadResultofTagLookup.call($this, theReturned);

@@ -35,7 +35,7 @@
                   
                     
                     <div class="btn-view-more-posts">             
-                      <div class="view-more-posts" data-viewmoretype="7" data-lastpost="0"><img src="{{asset('img/379.GIF')}}"></div> 
+                      <div class="view-more-posts" data-viewmoretype="7" data-lastpost="0"><img src="{{asset('img/245.GIF')}}"></div> 
                     </div>
 
                 

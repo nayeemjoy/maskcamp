@@ -64,7 +64,7 @@
             </div>
             
             <div class="btn-view-more-posts"> <!-- 5-7-Ehsan -->
-                <div class="view-more-posts" data-viewmoretype="2" data-lastpost="0"><img src="{{asset('img/379.GIF')}}"></div> <!-- 5-7-Ehsan -->
+                <div class="view-more-posts" data-viewmoretype="8" data-lastpost="0"><img src="{{asset('img/245.GIF')}}"></div> <!-- 26-11-Ehsan -->
             </div>
 
           </div> <!-- .wrapper -->
@@ -230,8 +230,8 @@
           @endif
           /*end-11/8/15-turash*/
 
-          /*Turning the posttypes to 1 for common room posts*/
-          $('div.post-area').attr('data-posttype', '1'); <!-- ///////////////////06-May-2015-Ehsan -->
+          /*Turning the posttypes to 3 for carnival posts*/
+          $('div.post-area').attr('data-posttype', '3'); <!-- //26-11-Ehsan -->
           
           $('.glyphicon-search').css({  /*05-10-15*/
             'color':'rgb(117, 114, 114)',

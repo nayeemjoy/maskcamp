@@ -69,7 +69,7 @@ Route::group(array('before' => 'auth'), function()
 	Route::get('/enable/','AjaxsController@enable');
 	Route::get('/disable/','AjaxsController@disable');
 	Route::get('/notificationclick/','AjaxsController@checkedNotification');
-	Route::get('/getnotification/','AjaxsController@getNotification');
+	Route::get('/getnotification/','AjaxsController@getNotification'); //getnotification?off=0&date
 	
 
 	Route::get('/setcampus/{id}','AjaxsController@setCampus');//setcampus/id
