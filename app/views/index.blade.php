@@ -40,12 +40,12 @@
                         <ul class="list-inline">
                             <label>
                             <input type="checkbox" id="index-checkbox">I Agree To The <a href="#">Terms Of Uses</a>
-                        </label>
-                        <button id="join" class="btn btn-facebook">Sign in with Facebook</button>
+                            </label>
+                            <a id="join" href="{{URL::to('/login')}}" class="btn btn-facebook">Sign in with Facebook</a>
                         </ul>           
                     </div>
                 <li>
-                  <button class="btn btn-index">LOGIN</button>
+                  <a href="{{URL::to('/login')}}" class="btn btn-index">LOGIN</a>
                 </li>
               </ul>
             </div>
@@ -154,10 +154,10 @@
           <div class="footer-content">
           
             <ul class="footer-list list-inline">
-              <li><span class="ion-document-text footer-icon page-icon"></span><a href="#">Terms of Uses</a></li>
-              <li><span class="ion-android-settings footer-icon page-icon"></span><a href="#">How to Use</a></li>
+              <li><span class="ion-document-text footer-icon page-icon"></span><a href="{{URL::to('/terms')}}">Terms of Uses</a></li>
+              <li style="display:none;"><span class="ion-android-settings footer-icon page-icon"></span><a href="#">How to Use</a></li>
               <!--<li><button class="btn btn-facebook">Sign in with Facebook</button></li>-->
-              <li><span class="ion-social-facebook footer-icon page-icon"></span><a href="#">Find Us on Facebook</a></li>
+              <li><span class="ion-social-facebook footer-icon page-icon"></span><a href="{{URL::to('https://www.facebook.com/maskcamp/?fref=ts')}}">Find Us on Facebook</a></li>
             </ul>
             <div class="copyright">
               Copyright © MaskCamp 2015, All Rights Reserved
