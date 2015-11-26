@@ -23,7 +23,7 @@
         <div class="col-lg-3 col-md-3 col-sm-3 hidden-xs"></div>
         <!-- !E -->
         <!-- LestSideBar -->
-        @include('sections.leftsidebar')
+        @include('sections.leftsidebarforcarnival')
         <!-- end of leftside bar -->
 
         <div class="col-lg-6 col-md-6 col-sm-6 section-02">
@@ -159,7 +159,7 @@
 
         <div class="col-lg-3 col-md-3 col-sm-3 hidden-xs"></div>
         <!-- starting of rightside bar -->
-        @include('sections.rightsidebarforcommon')
+        @include('sections.rightsidebarforcarnival')
         <!-- end of right side bar -->
 
       </div>
