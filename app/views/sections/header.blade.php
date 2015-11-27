@@ -82,7 +82,8 @@
                             </div>           
                           </li>
                           <!--  -->
-                          <li><a href="{{URL::to('/home')}}" title="Friends Room"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+                          <!--11-21-15-turash-->
+                          <li><a href="{{URL::to('/home')}}" title="Friends Room"><span class="ion-ios-people header-ion" aria-hidden="true"></span>
                           </a></li>
                           <li><a href="{{URL::to('/campus')}}" title="Campus"><span class="glyphicon glyphicon-education" aria-hidden="true"></span>
                           </a></li>  

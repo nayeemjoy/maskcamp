@@ -17,7 +17,8 @@
         
         <div class="row home" title="Your Facebook Friends Are Anonymous In Private Room."><!--05-10-15-->      
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-               <div class="page-title"><span class="page-icon glyphicon glyphicon-home" aria-hidden="true"></span>Friends Room<!--05-10-15--></div>
+               <!--11-21-15-turash-->
+               <div class="page-title page-title-ion"><span class="page-icon ion-ios-people customized-ionicons"></span>Friends Room</div>
             </div>        
         </div>
 

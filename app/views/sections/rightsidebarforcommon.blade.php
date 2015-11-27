@@ -22,11 +22,9 @@
           <span class="page-icon glyphicon glyphicon-globe" aria-hidden="true"></span> <!-- 5-7-Ehsan -->
           Common Room<!--05-10-15-->
           @elseif($data['page'] == "campus")
-          <span class="page-icon glyphicon glyphicon-education" aria-hidden="true"></span> <!-- 5-7-Ehsan -->
-          Campus
-          @elseif($data['page'] == "carnival")
-          <span class="page-icon glyphicon glyphicon-education" aria-hidden="true"></span> <!-- 5-7-Ehsan -->
-          Carnival
+          <!--11-21-15-turash-->
+          <span class="page-icon glyphicon glyphicon-education" aria-hidden="true"></span>
+          Campus Room
           @endif
         </div>
       </div>  

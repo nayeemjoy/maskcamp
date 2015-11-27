@@ -227,8 +227,7 @@
 
 						/*Start-26-11-Ehsan*/
 						$name = null;
-						if( (($post->type == 1) && ($post->type == 3)) && !$post->hide_name ){ 
-							$user = User::find($post->user_id);
+						if( ($post->type == 1 || $post->type == 3) && !$post->hide_name ){ 
 							$name = $user->username;
 						}
 						/*End-26-11-Ehsan*/
@@ -844,7 +843,7 @@
 						}
 					}
 					$user = User::find($post->user_id);
-					$user = User::find($post->user_id);
+					
 					if($user->disable == 1){
 						continue;
 					}

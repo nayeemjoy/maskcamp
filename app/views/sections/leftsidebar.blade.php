@@ -4,17 +4,6 @@
           
       <span class="visible-xs sidebar-x-button glyphicon glyphicon-remove-sign pull-right" id="cm-left-sidebar-x"aria-hidden="true"></span>
 
-      <!-- !E -->
-      <!-- START23-6-Ehsan -->
-      @if($data['page'] == "home")
-      <div class="row">
-        <div class="col-xs-12 howToUse">   
-          <button class="btn btn-blue btn-primary btn-modified" aria-hidden="true" data-toggle="modal" data-target="#welcomeModal">How To Use</button><!--11/07/15-turash-->
-        </div>
-      </div>
-      @endif
-      <!-- END23-6-Ehsan -->
-
       <div class="row">
         <div class="col-lg-12">   
           <div class="card-container">
@@ -25,6 +14,15 @@
           </div>
         </div>
       </div>
+
+      <!--11-21-15-turash-->
+      @if($data['page'] == "home")
+      <div class="row">
+        <div class="col-xs-12 howToUse">   
+          <button class="btn btn-dark-blue btn-primary btn-modified" aria-hidden="true" data-toggle="modal" data-target="#welcomeModal"><span class="page-icon glyphicon glyphicon-info-sign" aria-hidden="true"></span>How To Use</button><!--11-19-15-turash-->
+        </div>
+      </div>
+      @endif
       
       @if($data['prev_question'])
       <div class="row">

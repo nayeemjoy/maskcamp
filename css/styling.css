@@ -87,15 +87,16 @@ header{
 	border-radius: 4px;
 }
 
+/*11-21-15-turash*/
 .title{ 
-
-          position: relative;
-	  top: -23px;
-	  color: #fff;
-	  font-family: 'Ubuntu', sans-serif;
-	  font-weight: bold;
-	  margin-bottom: 0;
-	  text-shadow: 0px 0px 6px #353131;
+    position: relative;
+    top: -18px;
+    color: #FFF;
+    font-family: 'Abel', sans-serif;
+    font-weight: bold;
+    margin-bottom: 0;
+    text-transform: uppercase;
+    letter-spacing: 2px;
 }
 
 .search{
@@ -318,24 +319,18 @@ header{
    }
 }*/
 
-.poll{   /*05-10-15*/
+/*11-21-15-turash*/
+.poll{ 
 	text-align: center;
 	color:#fff;
 	font-size: 1.1em;
 	margin-top: 20px;
-	font-family: 'Source Sans Pro', sans-serif;
 	margin-bottom: 20px;
 	/*11/9/15-turash*/
     background: rgb(73, 163, 228);
-	/*background: -moz-linear-gradient(top,  rgba(131,181,106,1) 0%, rgba(79,140,83,1) 100%); 
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(131,181,106,1)), color-stop(100%,rgba(79,140,83,1))); 
-	background: -webkit-linear-gradient(top,  rgba(131,181,106,1) 0%,rgba(79,140,83,1) 100%);
-	background: -o-linear-gradient(top,  rgba(131,181,106,1) 0%,rgba(79,140,83,1) 100%); 
-	background: -ms-linear-gradient(top,  rgba(131,181,106,1) 0%,rgba(79,140,83,1) 100%);
-	background: linear-gradient(to bottom,  rgba(131,181,106,1) 0%,rgba(79,140,83,1) 100%); 
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#83b56a', endColorstr='#4f8c53',GradientType=0 );*/    
 	padding: 1px 5px 5px 5px;
     border-radius: 1px; 
+    font-weight: 500;
 }
 
 /*11-10-15-turash*/
@@ -355,20 +350,20 @@ header{
     color:#fff;
 }
 
-.question{  /*07-09-15-turash*/
-
-  text-align: center;
-  font-size: 1.1em;
-  color: rgb(50, 157, 199);
-  font-family: 'Source Sans Pro', sans-serif;
-  margin-top: -25px;
-  font-weight: 700;
+/*11-21-15-turash*/
+.question{ 
+    text-align: center;
+    font-size: 1.1em;
+    color: rgb(109, 109, 109);
+    font-family: 'Source Sans Pro', sans-serif;
+    margin-top: -13px;
+    font-weight: 700;
 }
 
-.opinion{   /*07-09-15-turash*/
-
+/*11-21-15-turash*/
+.opinion{   
   font-size: 1em;
-  color: rgb(52, 161, 203);
+  color: rgb(109, 109, 109);
   font-family: 'Source Sans Pro', sans-serif;
   position: relative;
   left: 25%;
@@ -376,8 +371,9 @@ header{
   margin-bottom: 5px;
 }
 
+/*11-21-15-turash*/
 p.question::first-letter {
-    font-size: 30px;
+    font-size: 1em;
 }
 
 /*.poll-submit{
@@ -452,8 +448,9 @@ border-radius: 1px;/* border: 1px solid #D2D1D1; */}
 }
 /*11/07/15-Turash-end*/
 
+/*11-21-15-turash*/
 .option-class{
-	background: #F6F2E7;
+	background: #FFFFFF;
 }
 
 .option-class>li>a{
@@ -686,7 +683,7 @@ div.cm-row-last {
 
 /*Common room*/
 
-.page-title,.hash,.trends-link,input,.like-dislike,.post-count,.nav-tabs>li.active>a,.post-info,
+.page-title,.hash,.trends-link,input,.post-count,.nav-tabs>li.active>a,.post-info,
 .btn-view-more>button,.posts-polls-tab,.confession-title,.confession-text,.modal-title,button,#text-input,.text-edit,
 .green,.red.yellow,.modal-body>h5,.radio,.post-display p,.f-f-f li a, .f-f-f p,.notifications{
 
@@ -756,15 +753,15 @@ div.cm-row-last {
     }
 }
 
+/*11-21-15-turash*/
 .page-title{
-
 	text-align: center;
 	color: #fff;
 	font-size: 1.2em;
 	margin-top: 0px;
-	padding: 8px;
+	padding: 6px 8px 8px 8px;
 	border-radius: 1px;
-	background: rgb(72, 176, 226);/*11-18-15-turash*/
+	background: rgb(72, 176, 226);
 	font-weight: 600;
 }
 
@@ -819,18 +816,17 @@ a.item {
 /*11-21-15-turash*/
 .trends{
 	max-width: 93%;
-    margin: 0px auto 15px;
-    background: rgb(255, 255, 255);
-    padding-top: 1em;
-    padding-bottom: .6em;
-    border-radius: 1px;   
-    border: 1px solid #E3E0E0;
+	margin: 0px auto 15px;
+	background: rgb(255, 255, 255);
+	padding-top: 1em;
+	padding-bottom: .6em;
+	border-radius: 0px 0px 1px 1px;
+	border: 1px solid #E3E0E0;
 }
 
 /*11-21-15-turash*/
 .trends-header{
-
-	max-width: 500px;
+	max-width: 540px;
 	margin-left: auto;
 	margin-right: auto;
 	text-align: center;
@@ -838,11 +834,10 @@ a.item {
 	font-size: 1.1em;
 	margin-top: 5px;
 	font-family: 'Source Sans Pro', sans-serif;
-	margin-bottom: 15px;
-	padding: 5px 5px 7px 5px;
-	border-radius: 1px;
-	background-color: rgb(72, 176, 226);
-	text-transform: uppercase;
+	margin-bottom: 0px;
+	padding: 2px 5px 5px 5px;
+	border-radius: 1px 1px 0px 0px;
+	background-color: rgb(73, 163, 228);
 }
 
 /*11-21-15-turash*/
@@ -895,6 +890,7 @@ a.item {
 }
 
 /*User Self Ratio*/
+/*11-21-15-turash*/
 .card-container {
   cursor: pointer;
   height: 120px;
@@ -903,8 +899,6 @@ a.item {
   position: relative;
   width: 120px;
   margin: 20px auto 0;
-  /*11/9/15-turash*/
-  background: #FFFFFF;
   border-radius: 50%;
 }
 
@@ -988,14 +982,15 @@ a.item {
     margin: 5px auto 5px;
 }
 
-/*11/9/15-turash*/
-.like-dislike{  /*05-23-15*/
+/*11-21-15-turash*/
+.like-dislike{  
 	text-align: center;
     padding: 2px 5px 5px 5px;
     border-radius: 1px;
     color: #fff;
     margin: 30px auto 10px;
     background: rgb(73, 163, 228);
+    font-size: 1.1em;
 }
 
 .post-count{
@@ -1240,11 +1235,12 @@ body.modal-open {
 	left:2px;
 }
 
+/*11-21-15-turash*/
 .btn-confession{
-
 	font-size: .8em;
 	border-color: #5994C7;
-        background: rgb(53, 160, 203);
+    background: rgb(53, 160, 203);
+    margin-top: 8px;
 }
 
 @media(min-width:768px) and (max-width:850px){
@@ -1427,9 +1423,10 @@ ul.notification-menu>li a:visited{
 	border-color: transparent;
 }
 
+/*11-21-15-turash*/
 .user-img-post{  
     position: relative;
-    top: -5px;
+    top: 0px;
     border-radius: 50%;
     background-color: rgb(255, 253, 250);
     border: 1px solid #dddddd;
@@ -1540,13 +1537,16 @@ textarea{
 	    min-width: 400px;
 	}
 }
+
+/*11-21-15-turash*/
 .notification-alert{
-	background: rgb(172, 88, 88);
+	background: rgb(206, 22, 22);
+    font-weight: bold
 }
 
+/*11-21-15-turash*/
 .notification-new{
-
-         background:rgb(242, 239, 223);
+    background: rgb(246, 247, 248);
 }
          
 
@@ -1905,10 +1905,10 @@ the modifications in all pages**/
 /*07-07-15-turash*/
 /*poll-area*/
 
-/*11-18-15-turash*/
+/*11-21-15-turash*/
 .poll-form{
     background: rgb(255, 253, 250);
-    padding: .5em;
+    padding: .5em .5em .5em .5em;
     max-width: 90%;
     margin: 20px auto 0;
     border-radius: 1px;
@@ -2018,8 +2018,8 @@ the modifications in all pages**/
 	}
 }
 
+/*11-21-15-turash*/
 .result-display{
-	background: #F5F1E7;
     padding-top: 5px;
     margin-bottom: 5px;
     border-radius:1px;
@@ -2108,3 +2108,35 @@ the modifications in all pages**/
 .notags:hover {
 	text-decoration: none;
 }
+
+
+/*11-21-15-*/
+
+.customized-ionicons{
+	font-size: 1.5em;
+    position: relative;
+    top: 3px;
+}
+
+.page-title-ion{
+	margin-top: 7px;
+    padding: 2px 5px 4px 5px;
+}
+
+.header-ion{
+	font-size: 1.5em;
+    position: relative;
+    top: 2px;
+}
+
+.poll,.like-dislike{
+	font-family: 'Dosis', sans-serif;
+}
+
+.btn-dark-blue{
+	background: #4F667A;
+	border:none;
+	padding-top: 1px;
+    padding-bottom: 5px;
+}
+/*End 11-21-15*/

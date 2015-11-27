@@ -40,7 +40,8 @@
             </div>
             <div class="row poll-section"><!--05-10-15-->
               <div class="col-lg-12">
-                <div class="trends-header"><span class="glyphicon glyphicon-certificate page-icon" aria-hidden="true"></span>Trends</div> 
+                <!--11-21-15-turash-->
+                <div class="trends-header"><span class="glyphicon glyphicon-flash page-icon" aria-hidden="true"></span>Trends</div> 
               </div>       
             </div>
 

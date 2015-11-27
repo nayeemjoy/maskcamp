@@ -2980,7 +2980,7 @@
       }).promise();
 
       ajRes.done( function( theReturned ) {        
-        //console.log(theReturned);
+        console.log(theReturned);
         if (theReturned['posts'].length){          
 
           console.log('Hashtag matched posts: '+theReturned['posts'].length);

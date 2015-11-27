@@ -15,8 +15,12 @@
 @endif
 <link href='https://fonts.googleapis.com/css?family=Droid+Sans:400,700' rel='stylesheet' type='text/css'>
 <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,600italic' rel='stylesheet' type='text/css'>
+<!--11-21-15-turash-->
+<link href='https://fonts.googleapis.com/css?family=Abel|Roboto+Condensed:400,300,400italic,700,700italic|Dosis:400,500,600,700,800' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+<!--11-21-15-turash-->
+<link rel="stylesheet" type="text/css" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 <link href="{{asset('css/styling.css')}}" rel="stylesheet">
 <link href="{{asset('css/others.css')}}" rel="stylesheet">
 <script>
