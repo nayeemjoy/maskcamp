@@ -165,6 +165,8 @@
 							preg_match_all('/#([a-zA-Z0-9\x{0980}-\x{09FF}_])+/u', $post->post, $matches);
 							foreach ($matches[0] as $key) {
 								$tag = HashTag::whereTag($key)->first();
+								$tagged_post = TaggedPost::wherePostId($post->id)->whereTagId($tag->id)->first();
+								if($tagged_post) continue;
 								if($tag){
 									$tagged_post = new TaggedPost;
 									$tagged_post->post_id = $post->id;

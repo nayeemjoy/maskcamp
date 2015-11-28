@@ -30,7 +30,7 @@
     @if($data['top_post'])
      <div class="row poll-section"><!--05-10-15-->
           <div class="col-lg-12">
-              <div class="poll"><span class="page-icon glyphicon glyphicon-star" aria-hidden="true"></span>The Top Of Yesterday</div><!--05-25-15-turash-->
+              <div class="poll"><span class="page-icon glyphicon glyphicon-star" aria-hidden="true"></span>Top Post</div><!--05-25-15-turash-->
           </div>       
     </div>
 
@@ -136,7 +136,7 @@
     @if($data['flop_post'])
     <div class="row poll-section"><!--05-10-15-->
       <div class="col-lg-12">
-        <div class="poll"><span class="page-icon glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>The Flop Of Yesterday</div><!05-25-15-turash-->
+        <div class="poll"><span class="page-icon glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>Flop Post</div><!05-25-15-turash-->
       </div>       
     </div>
     

@@ -9,6 +9,7 @@
 
             <div class="col-lg-5 col-md-5 col-sm-4"> <!-- 5-7-Ehsan -->
                
+                      <a class="btn btn-primary" href="{{URL::to('/carnival')}}">CSE CARNIVAL</a>
             </div>
 
             <div class="col-lg-4 col-md-4 col-sm-5"> <!-- 5-7-Ehsan -->
