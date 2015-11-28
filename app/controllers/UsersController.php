@@ -1130,7 +1130,9 @@
 			
 			//Get Current Trends End
 			$data['page'] = "carnival";		
+			
 			return View::make('carnival')->with('data', $data);
+			
 		}
 		// 
 		public function give_answer(){
@@ -1354,7 +1356,12 @@
 							$confess_time = $confess_time->diffInHours();
 							//$confess_time = $confess_time->diffInSeconds();
 							if($confess_time < 24){
-								$confession = $confession->confess;	
+								if($confession->updated_at < $post->created_at){
+									$confession = $confession->confess;	
+								}
+								else{
+									$confession = null;
+								}	
 							}
 							else
 							{
@@ -1411,7 +1418,12 @@
 						$confess_time = $confess_time->diffInHours();
 						//$confess_time = $confess_time->diffInSeconds();
 						if($confess_time < 24){
-							$confession = $confession->confess;	
+							if($confession->updated_at < $post->created_at){
+														$confession = $confession->confess;	
+							}
+							else{
+								$confession = null;
+							}
 						}
 						else
 						{
@@ -1462,6 +1474,7 @@
 				}
 				$data['single'] = 1;
 				$data['reports'] = Report::get();
+				// return json_encode($data['']);
 				return View::make('single')->withData($data);
 		}
 		public function viewNotification($id){

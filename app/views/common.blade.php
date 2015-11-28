@@ -38,6 +38,8 @@
                     <!-- Create Post Section End -->
                </div>
             </div>
+
+            @if(sizeof($data['tags']))
             <div class="row poll-section"><!--05-10-15-->
               <div class="col-lg-12">
                 <!--11-21-15-turash-->
@@ -54,6 +56,7 @@
              	</div>
                 @endforeach          
             </div>
+            @endif
 
             <div class="row hash-search"><!--05-10-15-->          
                  <input type="text" class="form-control" placeholder="Search Hashtags"> <!-- 5-7-Ehsan -->                   

@@ -48,6 +48,7 @@
                </div>
             </div>
             
+            @if(sizeof($data['tags']))
             <div class="row poll-section"><!--05-10-15-->
               <div class="col-lg-12">
                 <div class="trends-header"><span class="glyphicon glyphicon-flash page-icon" aria-hidden="true"></span>Trends</div>
@@ -63,6 +64,7 @@
              	</div>
                 @endforeach          
             </div>
+            @endif
 
             <div class="row hash-search">   
                  <input type="text" class="form-control" placeholder="Search Hashtags"> <!-- 5-7-Ehsan -->

@@ -38,21 +38,24 @@
                     <!-- Create Post Section End -->
                </div>
             </div>
+            
+            @if(sizeof($data['tags']))
             <div class="row poll-section"><!--05-10-15-->
               <div class="col-lg-12">
                 <div class="trends-header"><span class="glyphicon glyphicon-flash page-icon" aria-hidden="true"></span>Trends</div> 
               </div>       
             </div>
-
+            
             <div class="row trends"><!--05-10-15-->
                 @foreach($data['tags'] as $tag)
               	<div class="col-lg-4 col-md-4 col-sm-4">
                 	<div class="trend-class">
                  		<a href="#" class="trends-link tags">{{$tag->tag}}</a><!-- Eve-26-May-Ehsan -->
                 	</div>
-             	</div>
+             	  </div>
                 @endforeach          
             </div>
+            @endif
 
             <div class="row hash-search"><!--05-10-15-->          
                  <input type="text" class="form-control" placeholder="Search Hashtags"> <!-- 5-7-Ehsan -->                   
@@ -200,39 +203,12 @@
           /*end of 01-07-15*/
 
           /*start-11/8/15-turash*/
-          @if($data['prev_question'])
-          var data = [
-                {
-                    value: {{$data['answers'][1]['total_answer']}},
-                    color:"#B2DBF3",
-                    highlight: "#B2DBF3",
-                    label:  "{{$data['answers'][1]['option_details']}}"
-                },
-                {
-                    value: {{$data['answers'][2]['total_answer']}},
-                    color: "#94CBEC",
-                    highlight: "#94CBEC",
-                    label: "{{$data['answers'][2]['option_details']}}"
-                },
-                {
-                    value: {{$data['answers'][3]['total_answer']}},
-                    color: "#70D7FF",
-                    highlight: "#70D7FF",
-                    label: "{{$data['answers'][3]['option_details']}}"
-                }
-            ];
-            var ctx = document.getElementById("result-chart").getContext("2d");
-            var myNewChart = new Chart(ctx).Doughnut(data, {
-                animateScale: true,
-                segmentStrokeWidth : 4,
-                segmentStrokeColor : "#2c3a49"
-            });
-          @endif
+          
           /*end-11/8/15-turash*/
-
+          console.log('Upore*******************************************************');
           /*Turning the posttypes to 3 for carnival posts*/
           $('div.post-area').attr('data-posttype', '3'); <!-- //26-11-Ehsan -->
-          
+          console.log('Niche*******************************************************');
           $('.glyphicon-search').css({  /*05-10-15*/
             'color':'rgb(117, 114, 114)',
             'margin-bottom':'15px'

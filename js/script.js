@@ -1988,6 +1988,51 @@
               class: "col-lg-3 col-md-3 col-sm-3 col-xs-3"
           }).appendTo(thePostDisplay);
 
+          /*Start-28-11-Ehsan*/
+          /*var userImgFlipDivRow = $("<div></div>", {
+              class: "row"
+          }).appendTo(theLg2Div);
+
+          var userImgFlipDivColLg12 = $("<div></div>", {
+              class: "col-lg-12"
+          }).appendTo(userImgFlipDivRow);
+
+          var userImgFlipCardContainer = $("<div></div>", {
+              class: "card-container"
+          }).appendTo(userImgFlipDivColLg12);
+
+          var userImgFlipDivCard = $("<div></div>", {
+              class: "card"
+          }).appendTo(userImgFlipCardContainer);
+
+          var userImgFlipDivSide = $("<div></div>", {
+              class: "side"
+          }).appendTo(userImgFlipDivCard);
+
+          var userImgFlipDivSideBack = $("<div></div>", {
+              class: "side back"
+          }).appendTo(userImgFlipDivCard);
+
+          var userFlipImg = $("<img>", {
+              src: theReturned['posts'][loopCount].img,
+              class: "img-responsive img-rounded user-img",
+              "data-user": theReturned['posts'][loopCount].user_id,
+              "data-img_canvas_id": "cvs-"+theReturned['posts'][loopCount].id,
+              "data-userpicture": theReturned['posts'][loopCount].imgid
+          }).appendTo(userImgFlipDivSide);
+
+          $("<canvas></canvas>", {
+              id: "cvs-"+theReturned['posts'][loopCount].id,
+              width: "95",
+              height: "95"
+          }).appendTo(userImgFlipDivSideBack);
+
+          userFlipImg.on('mouseover', function() {
+            getLkDlkRatio.call(this, $(this).attr("data-user"));
+          });*/
+
+          /*End-28-11-Ehsan*/
+
           var lg2Img = $("<img>", {
               src: theReturned['posts'][loopCount].img,
               class: "img-responsive img-rounded cm-img-pop user-img-post",
@@ -2000,10 +2045,10 @@
           }).appendTo(theLg2Div);
 
           lg2Img.tooltip();
-          //var theUserIdImg = theReturned['posts'][loopCount].user_id;
+          
           lg2Img.on('shown.bs.tooltip', function(){
-              //console.log("User Ratio loading: "+$(this).attr("data-user"));
-              getLkDlkRatio.call(this, $(this).attr("data-user")); /*23-6-Ehsan*/
+              
+              getLkDlkRatio.call(this, $(this).attr("data-user"));
           });
 
           //!From here

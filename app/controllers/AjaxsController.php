@@ -333,6 +333,7 @@
 					}
 					$user = User::find($post->user_id);
 					$url = Picture::find($user->picture);
+					$selfPictureId = $url->id; /*28-11-Ehsan*/
 					$url = $url->url;
 	        	  		$text = htmlentities($post->post);
 					
@@ -374,6 +375,7 @@
 						'post' => $text,
 						'user_id' => $post->user_id,
 						'img' => asset($url),
+						'imgid' => $selfPictureId, /*28-11-Ehsan*/
 						'confess' => $confession,
 						'following' => $following,
 						'type' => $post->type,
@@ -831,11 +833,21 @@
 	           		$confession = Confession::whereUserId($post->user_id)->first();
 					if($confession){
 						$confess_time = Carbon::parse($confession->created_at);
-						//$now = $now->diffInHours();
-						$confess_time = $confess_time->diffInHours(); /*23-6-Ehsan*/
+						$confess_time = $confess_time->diffInHours();
 						//$confess_time = $confess_time->diffInSeconds();
 						if($confess_time < 24){
-							$confession = $confession->confess;	
+							if($confession->updated_at < $post->created_at){
+								$confession_view = ConfessionView::whereConfessionId($confession->id)->whereIsValid(1)->get()->count();
+								$confession = [
+									'id' => $confession->id,
+									'confess'=> $confession->confess,
+									'view' => $confession_view
+								];
+
+							}
+							else{
+								$confession = null;
+							}	
 						}
 						else
 						{
